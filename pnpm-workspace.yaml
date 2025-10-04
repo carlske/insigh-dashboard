@@ -1,0 +1,5 @@
+packages:
+  - "frontend"
+  - "design-system/ui"
+  - "shared"
+  - "backend"

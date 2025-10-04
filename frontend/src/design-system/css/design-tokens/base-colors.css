@@ -1,0 +1,73 @@
+@theme {
+  --color-insigh-melanzane-50: #fcedf6;
+  --color-insigh-melanzane-100: #f7d0e9;
+  --color-insigh-melanzane-200: #efa1d7;
+  --color-insigh-melanzane-300: #e973c8;
+  --color-insigh-melanzane-400: #d848b4;
+  --color-insigh-melanzane-500: #b23a94;
+  --color-insigh-melanzane-600: #8e2d76;
+  --color-insigh-melanzane-700: #6d205a;
+  --color-insigh-melanzane-800: #4e1540;
+  --color-insigh-melanzane-900: #320a28; /** base */
+  --color-insigh-melanzane-950: #23051b;
+
+  --color-insigh-sugar-cane-50: #f7fff6; /* base */
+  --color-insigh-sugar-cane-100: #dcffd7;
+  --color-insigh-sugar-cane-200: #66ff2d;
+  --color-insigh-sugar-cane-300: #52e400;
+  --color-insigh-sugar-cane-400: #46c500;
+  --color-insigh-sugar-cane-500: #39a500;
+  --color-insigh-sugar-cane-600: #2c8400;
+  --color-insigh-sugar-cane-700: #1f6300;
+  --color-insigh-sugar-cane-800: #124300;
+  --color-insigh-sugar-cane-900: #062400;
+  --color-insigh-sugar-cane-950: #031500;
+
+  --color-insigh-wewak-50: #fdedef;
+  --color-insigh-wewak-100: #fad9dd;
+  --color-insigh-wewak-200: #f7bac2;
+  --color-insigh-wewak-300: #f59ca9; /* base */
+  --color-insigh-wewak-400: #f38093;
+  --color-insigh-wewak-500: #f15173;
+  --color-insigh-wewak-600: #d32d57;
+  --color-insigh-wewak-700: #a22041;
+  --color-insigh-wewak-800: #71132b;
+  --color-insigh-wewak-900: #410716;
+  --color-insigh-wewak-950: #29030b;
+
+  --color-insigh-chambray-50: #ecf1fd;
+  --color-insigh-chambray-100: #d0ddfb;
+  --color-insigh-chambray-200: #a3bff8;
+  --color-insigh-chambray-300: #76a5f4;
+  --color-insigh-chambray-400: #3b8df1;
+  --color-insigh-chambray-500: #3077cc;
+  --color-insigh-chambray-600: #2662a9;
+  --color-insigh-chambray-700: #1d4e89; /* base */
+  --color-insigh-chambray-800: #133a68;
+  --color-insigh-chambray-900: #071f3c;
+  --color-insigh-chambray-950: #031125;
+
+  --color-insigh-monsoon-50: #f1f0f1;
+  --color-insigh-monsoon-100: #dfdcdd;
+  --color-insigh-monsoon-200: #c4bebf;
+  --color-insigh-monsoon-300: #ada4a6;
+  --color-insigh-monsoon-400: #988b8e; /* base */
+  --color-insigh-monsoon-500: #897a7d;
+  --color-insigh-monsoon-600: #716567;
+  --color-insigh-monsoon-700: #574d4f;
+  --color-insigh-monsoon-800: #3c3536;
+  --color-insigh-monsoon-900: #211d1e;
+  --color-insigh-monsoon-950: #131011;
+
+  --color-insigh-accent: var(--color-insigh-chambray-700);
+  --color-insigh-primary: var(--color-insigh-wewak-300);
+  --color-insigh-accent-foreground: var(--color-insigh-monsoon-50);
+
+  --color-insigh-font-color: var(--color-insigh-monsoon-50);
+
+  --color-insigh-border: var(--color-insigh-monsoon-400);
+
+  --color-insigh-success: var(--color-insigh-sugar-cane-300);
+  --color-insigh-warning: var(--color-orange-400);
+  --color-insigh-error: var(--color-insigh-wewak-300);
+}

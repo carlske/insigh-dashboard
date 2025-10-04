@@ -1,0 +1,9 @@
+@import "tailwindcss";
+@import "../design-system/css/insigh-design.css";
+
+body {
+  font-family: var(--insigh-typo_font-family--base);
+  font-weight: var(--insigh-typo_font-weight--regular);
+  color: var(--color-insigh-roman-coffee-2000);
+  background-color: var(--insigh-clam-shell-50);
+}

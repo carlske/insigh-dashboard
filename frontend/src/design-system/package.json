@@ -1,0 +1,10 @@
+{
+  "name": "@insigh/ui",
+  "version": "0.1.0",
+  "main": "index.ts",
+  "private": true,
+  "exports": {
+    ".": "./index.ts"
+  },
+  "packageManager": "pnpm@10.6.2"
+}
