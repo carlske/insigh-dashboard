@@ -10,9 +10,8 @@ export const AuthService = {
     if (exists) throw new AppError("User already exists", 400);
 
     const hashed = await bcrypt.hash(data.password, 10);
-    const user = await User.create({ email: data.email, password: hashed });
-
-    return { email: user.email };
+    const newUser = await User.create({ email: data.email, password: hashed });
+    return { email: newUser.email };
   },
 
   async login(data: { email: string; password: string }) {
@@ -25,15 +24,14 @@ export const AuthService = {
     const token = jwt.sign({ email: user.email }, env.JWT_SECRET, {
       expiresIn: "1h",
     });
-    return { token };
+    return { token, email: user.email };
   },
 
-  async logout(token: string) {
-    // En JWT stateless, el "logout" es simbólico.
-    // Aquí podrías guardar el token en una "blacklist" si quisieras invalidarlo.
-    console.log(
-      `Token ${token} marked as logged out (client should discard it).`
-    );
-    return { message: "User logged out (token invalidated client-side)" };
+  async verifyToken(token: string) {
+    try {
+      return jwt.verify(token, env.JWT_SECRET);
+    } catch {
+      throw new AppError("Invalid or expired token", 401);
+    }
   },
 };

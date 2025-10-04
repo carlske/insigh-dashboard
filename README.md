@@ -1,47 +1,245 @@
-# Insigh Monorepo
+# 📊 Insigh Dashboard
 
-This repository contains multiple packages for the Insigh project, including the frontend, backend, design system, and shared utilities.
+Una plataforma moderna de dashboard construida con una arquitectura de monorepo que incluye backend, frontend y sistema de diseño.
 
-# @insigh-ui
-Insigh UI is a design system package within the Insigh monorepo.
+## 🏗️ Arquitectura del Proyecto
 
-It's a design system and component library for building user interfaces. It provides a set of reusable UI components, design tokens, and styles to ensure consistency and efficiency in UI development.
+Este proyecto está organizado como un monorepo con las siguientes partes:
 
-## Packages
+```
+insigh-ui/
+├── 🔧 backend/          # API REST con Node.js + Express + MongoDB
+├── 🎨 frontend/         # Dashboard con Next.js 15 + React 19
+├── 🎯 design-system/    # Componentes UI reutilizables
+├── 📦 shared/          # Utilidades compartidas
+└── 📋 package.json     # Configuración del workspace
+```
 
-- **Frontend**: The client-side application built with Next.js.
-- **Backend**: The server-side application built with Node.js.
-- **Design System**: A collection of reusable UI components and design tokens.
-- **Shared Utilities**: Common utility functions and types used across the project.
+### Stack Tecnológico
 
-## Getting Started
+**Backend:**
 
-To get started with the Insigh monorepo, follow these steps:
+- Node.js + TypeScript
+- Express.js con middleware personalizado
+- MongoDB con Mongoose
+- JWT para autenticación
+- Swagger UI para documentación API
+- Docker Compose para desarrollo
 
-1. **Clone the repository**:
-   ```bash
-   git clone <repository-url>
-    cd insigh-ui
-   ```
-2. **Install dependencies**:
-   ```bash
-   pnpm install
-   ```
-3. **Run the development servers**:
-   - For the frontend:
-     ```bash
-     pnpm dev
-     ```
-   - For the backend:
-     `bash
+**Frontend:**
+
+- Next.js 15 con App Router
+- React 19 + TypeScript
+- Tailwind CSS v4
+
+**Design System:**
+
+- Componentes React reutilizables
+- CSS custom properties para temas
+- Sistema de tokens de diseño
+- Arquitectura modular
+
+## 🚀 Inicio Rápido
+
+### Prerrequisitos
+
+- Node.js 18+
+- pnpm 10+
+- Docker (opcional, para base de datos)
+
+### Instalación
+
+1. **Clonar el repositorio:**
+
+```bash
+git clone [url-del-repo]
+cd insigh-ui
+```
+
+2. **Instalar dependencias:**
+
+```bash
+pnpm install
+```
+
+3. **Configurar variables de entorno:**
+
+````bash
+cp backend/.env.example backend/.env
+nano backend/.env
+```bash
+# Copiar archivo de ejemplo
+cp backend/.env.example backend/.env
+
+# Editar variables según tu entorno
+nano backend/.env
+````
+
+4. **Iniciar base de datos (Docker):**
+
+```bash
 cd backend
+docker-compose up -d mongo
+```
+
+## 🏃‍♂️ Desarrollo
+
+### Backend API
+
+```bash
+cd backend
+
+# Desarrollo con hot reload
 pnpm dev
-`
 
-## Learn More
+# Build para producción
+pnpm build
 
-- [Next.js Documentation](https://nextjs.org/docs)
-- [Node.js Documentation](https://nodejs.org/en/docs/)
-- [Tailwind CSS Documentation](https://tailwindcss.com/docs)
-- [pnpm Documentation](https://pnpm.io/motivation)
-- [Vercel Documentation](https://vercel.com/docs)
+# Ejecutar en producción
+pnpm start
+
+# Linting
+pnpm lint
+```
+
+**Endpoints principales:**
+
+- `GET /health` - Estado de salud de la API
+- `POST /auth/login` - Autenticación de usuarios
+- `GET /tracking/*` - Endpoints de seguimiento
+- `GET /api-docs` - Documentación Swagger
+
+### Frontend Dashboard
+
+```bash
+cd frontend
+
+# Desarrollo con Turbopack
+pnpm dev
+
+# Build optimizado
+pnpm build
+
+# Servidor de producción
+pnpm start
+
+# Linting
+pnpm lint
+```
+
+**Características:**
+
+- Server-side rendering (SSR)
+- Optimización automática de imágenes
+- Soporte para modo claro/oscuro
+- Responsive design mobile-first
+
+### Design System
+
+```bash
+cd design-system
+
+# Los componentes se importan desde otros módulos
+# No requiere servidor independiente
+```
+
+**Componentes disponibles:**
+
+- `InsighButton` - Botones con variantes
+- `InsighCard` - Tarjetas de contenido
+- `InsighInput` - Campos de entrada
+- `InsighModal` - Ventanas modales
+
+## 🌐 URLs de Desarrollo
+
+- **Frontend:** http://localhost:3000
+- **Backend API:** http://localhost:4000
+- **API Docs:** http://localhost:4000/api-docs
+- **MongoDB:** mongodb://localhost:27017
+
+## 📂 Estructura Detallada
+
+### Backend (`/backend`)
+
+```
+src/
+├── app.ts              # Configuración Express
+├── server.ts           # Punto de entrada
+├── config/             # Configuración (DB, env, Swagger)
+├── core/               # Middleware y utilidades core
+│   ├── errors/         # Manejo de errores
+│   ├── middleware/     # Auth middleware
+│   └── utils/          # Logger y utilidades
+└── modules/            # Módulos de la aplicación
+    ├── auth/           # Autenticación
+    ├── health/         # Health checks
+    └── tracking/       # Sistema de seguimiento
+```
+
+### Frontend (`/frontend`)
+
+```
+src/
+├── app/                # Next.js App Router
+│   ├── layout.tsx      # Layout raíz con fonts
+│   ├── page.tsx        # Página principal
+│   └── globals.css     # Estilos Tailwind + custom props
+└── design-system/      # Symlink al design system
+```
+
+## 🔧 Configuración
+
+### Variables de Entorno (Backend)
+
+Copia `backend/.env.example` a `backend/.env` y configura:
+
+- `PORT` - Puerto del servidor (default: 4000)
+- `MONGO_URI` - URI de conexión MongoDB
+- `JWT_SECRET` - Clave secreta para JWT
+
+### Configuración MongoDB
+
+Para desarrollo local con Docker:
+
+- Usuario: `insigh_user`
+- Contraseña: `insigh_pass`
+- Puerto: `27017`
+
+## 🧪 Testing
+
+```bash
+# Ejecutar tests (cuando estén configurados)
+pnpm test
+```
+
+## 📦 Build y Deploy
+
+### Backend
+
+```bash
+cd backend
+pnpm build
+pnpm start
+```
+
+### Frontend
+
+```bash
+cd frontend
+pnpm build
+pnpm start
+```
+
+## 📝 Documentación Adicional
+
+- [Backend API Docs](./backend/README.md)
+- [Frontend Setup](./frontend/README.md)
+- [Design System](./design-system/README.md)
+
+## 📄 Licencia
+
+Este proyecto está bajo la Licencia ISC.
+
+---
+
+**Desarrollado por Carlos V ❤️**
