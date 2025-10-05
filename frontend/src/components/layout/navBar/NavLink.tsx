@@ -9,7 +9,7 @@ const NavLink = () => {
     { href: "/library/input", title: "Input", type: "text" },
     { href: "/library/modal", title: "Modal", type: "text" },
     {
-      href: "/library/profile",
+      href: "/auth",
       title: "Profile",
       type: "icon",
       icon: "user-round",
