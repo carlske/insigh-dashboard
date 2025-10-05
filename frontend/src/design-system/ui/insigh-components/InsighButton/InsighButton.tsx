@@ -1,8 +1,7 @@
 import { forwardRef } from "react";
 import { InsighButtonSize, InsighButtonVariant } from ".";
-// If you have a local utility function for classnames, update the import path accordingly:
 import { cn } from "@insigh-shared/utils/cn";
-// Or, if you don't have a cn utility, you can use a simple implementation:
+import { DynamicIcon, type IconName } from "lucide-react/dynamic";
 
 interface InsighButtonProps extends React.ComponentPropsWithoutRef<"button"> {
   /**
@@ -28,21 +27,45 @@ interface InsighButtonProps extends React.ComponentPropsWithoutRef<"button"> {
    * @default undefained
    */
   children: React.ReactNode;
+
+  /**
+   * Optional icon to be displayed in the button.
+   * Lucide Icons are used. for more info: https://lucide.dev/
+   * @default undefined
+   */
+  icon?: IconName;
+
+  submit?: boolean;
 }
 
 const InsighButton = forwardRef<HTMLButtonElement, InsighButtonProps>(
-  ({ children, variant = "primary", size = "medium", ...props }, ref) => {
+  (
+    { children, variant = "primary", size = "medium", icon, submit, ...props },
+    ref
+  ) => {
     return (
       <button
         ref={ref}
-        className={cn(`insigh-button-${variant} insigh-button-${size}`)}
+        type={submit ? "submit" : "button"}
+        className={cn(
+          `insigh-button insigh-button-${variant} insigh-button_size--${size} `
+        )}
         {...props}
       >
-        {children}
+        {icon ? (
+          <div className="flex justify-center items-center gap-2 w-full">
+            <DynamicIcon name={icon} color="white" />
+
+            {children}
+          </div>
+        ) : (
+          children
+        )}
       </button>
     );
   }
 );
 
 InsighButton.displayName = "InsighButton";
+
 export default InsighButton;

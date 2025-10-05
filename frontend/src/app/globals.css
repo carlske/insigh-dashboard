@@ -4,6 +4,35 @@
 body {
   font-family: var(--insigh-typo_font-family--base);
   font-weight: var(--insigh-typo_font-weight--regular);
-  color: var(--color-insigh-roman-coffee-2000);
-  background-color: var(--insigh-clam-shell-50);
+  color: var(--color-insigh-roman-coffee-200);
+  background-color: var(--color-insigh-accent-foreground);
+}
+
+nav a {
+  text-decoration: none;
+  color: var(--color-white);
+  font-weight: 500;
+  font-size: 16px;
+  position: relative;
+  transition: color 0.3s ease;
+}
+
+nav a::after {
+  content: "";
+  position: absolute;
+  bottom: -5px;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background-color: var(--color-insigh-melanzane-100);
+  transform: scaleX(0);
+  transition: transform 0.3s ease;
+}
+
+nav a:hover {
+  color: var(--color-insigh-melanzane-100);
+}
+
+nav a:hover::after {
+  transform: scaleX(1);
 }

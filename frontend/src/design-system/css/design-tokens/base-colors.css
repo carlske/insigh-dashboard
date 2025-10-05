@@ -60,14 +60,16 @@
   --color-insigh-monsoon-950: #131011;
 
   --color-insigh-accent: var(--color-insigh-chambray-700);
-  --color-insigh-primary: var(--color-insigh-wewak-300);
+  --color-insigh-primary: var(--color-insigh-melanzane-900);
   --color-insigh-accent-foreground: var(--color-insigh-monsoon-50);
-
   --color-insigh-font-color: var(--color-insigh-monsoon-50);
-
   --color-insigh-border: var(--color-insigh-monsoon-400);
 
+  /* Status Colors */
   --color-insigh-success: var(--color-insigh-sugar-cane-300);
   --color-insigh-warning: var(--color-orange-400);
-  --color-insigh-error: var(--color-insigh-wewak-300);
+  --color-insigh-error: var(--color-insigh-wewak-500);
+  --color-insigh-disabled: var(--color-insigh-monsoon-300);
+  --color-insigh-placeholder: var(--color-insigh-monsoon-300);
+  --color-insigh-focus: var(--color-insigh-chambray-300);
 }

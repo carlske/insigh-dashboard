@@ -1,29 +1,252 @@
-@layer InsighInput {
-  .insigh-input {
-    @apply flex flex-col gap-1;
+@layer InsigInput {
+  .insigh-input-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    width: 100%;
   }
 
-  .insigh-input label {
-    @apply text-sm font-medium text-gray-700;
+  .insigh-input-label {
+    display: block;
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: var(--color-insigh-melanzane-900);
+    margin-bottom: 0.25rem;
+    transition: color 0.2s ease;
   }
 
-  .insigh-input input {
-    @apply border border-insigh-border rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-blue-500 transition-colors disabled:bg-gray-100 disabled:cursor-not-allowed;
+  .insigh-input-label--disabled {
+    color: var(--color-insigh-disabled);
+    cursor: not-allowed;
   }
 
-  .insigh-input input.error {
-    @apply border-insigh-error;
+  .insigh-input-label--error {
+    color: var(--color-insigh-error);
   }
 
-  .insigh-input-warning {
-    @apply border-insigh-warning;
+  .insigh-input-required {
+    color: var(--color-insigh-error);
+    margin-left: 0.25rem;
   }
 
-  .insigh-input input.valid {
-    @apply border-insigh-success;
+  .insigh-input-container {
+    position: relative;
+    display: flex;
+    align-items: center;
+    width: 100%;
+    background-color: var(--color-insigh-monsoon-50);
+    border: 2px solid var(--color-insigh-monsoon-300);
+    border-radius: 8px;
+    transition: all 0.2s ease;
+    overflow: hidden;
   }
 
-  .insigh-input input:disabled {
-    @apply bg-gray-100 cursor-not-allowed;
+  .insigh-input-container:hover:not(.insigh-input-container--disabled) {
+    border-color: var(--color-insigh-monsoon-400);
+  }
+
+  .insigh-input-container--focused {
+    border-color: var(--color-insigh-focus);
+    box-shadow: 0 0 0 3px var(--color-insigh-focus);
+  }
+
+  .insigh-input-container--error {
+    border-color: var(--color-insigh-error);
+  }
+
+  .insigh-input-container--error.insigh-input-container--focused {
+    box-shadow: 0 0 0 3px rgba(220, 38, 38, 0.1);
+  }
+
+  .insigh-input-container--success {
+    border-color: var(--color-insigh-success);
+  }
+
+  .insigh-input-container--success.insigh-input-container--focused {
+    box-shadow: 0 0 0 2px var(--color-insigh-success);
+  }
+
+  .insigh-input-container--disabled {
+    background-color: var(--color-insigh-monsoon-50);
+    border-color: var(--color-insigh-border);
+    cursor: not-allowed;
+    opacity: 0.6;
+  }
+
+  .insigh-input-field {
+    flex: 1;
+    width: 100%;
+    padding: 0.625rem 0.875rem;
+    font-size: 0.875rem;
+    line-height: 1.5;
+    color: var(--color-insigh-melanzane-900);
+    background-color: transparent;
+    border: none;
+    outline: none;
+    transition: all 0.2s ease;
+  }
+
+  .insigh-input-field::placeholder {
+    color: var(--color-insigh-placeholder);
+  }
+
+  .insigh-input-field:disabled {
+    cursor: not-allowed;
+    color: var(--color-insigh-disabled);
+  }
+
+  .insigh-input-field:disabled::placeholder {
+    color: var(--color-insigh-disabled);
+  }
+
+  .insigh-input-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    color: var(--color-insigh-monsoon-900);
+    transition: color 0.2s ease;
+  }
+
+  .insigh-input-icon--start {
+    padding-left: 0.875rem;
+    padding-right: 0.5rem;
+  }
+
+  .insigh-input-icon--end {
+    padding-right: 0.875rem;
+    padding-left: 0.5rem;
+  }
+
+  .insigh-input-icon--button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0.5rem 0.875rem;
+    color: var(--color-insigh-monsoon-900);
+    transition: color 0.2s ease;
+  }
+
+  .insigh-input-icon--button:hover:not(:disabled) {
+    color: var(--color-insigh-melanzane-900);
+  }
+
+  .insigh-input-icon--button:disabled {
+    cursor: not-allowed;
+    opacity: 0.5;
+  }
+
+  .insigh-input-icon--button:focus-visible {
+    outline: 2px solid var(--color-insigh-focus);
+    outline-offset: 2px;
+    border-radius: 4px;
+  }
+
+  .insigh-input-icon-svg {
+    width: 20px;
+    height: 20px;
+  }
+
+  .text-insigh-success {
+    color: var(--color-insigh-success);
+  }
+
+  .insigh-input-message {
+    font-size: 0.75rem;
+    line-height: 1.5;
+    margin: 0;
+    min-height: 1rem;
+  }
+
+  .insigh-input-message--helper {
+    color: var(--color-insigh-monsoon-900);
+  }
+
+  .insigh-input-message--error {
+    color: var(--color-insigh-error);
+    font-weight: 500;
+  }
+
+  .insigh-input-container:has(.insigh-input-icon--start) .insigh-input-field {
+    padding-left: 0.5rem;
+  }
+
+  .insigh-input-container:has(.insigh-input-icon--end) .insigh-input-field {
+    padding-right: 0.5rem;
+  }
+
+  .insigh-input-field:-webkit-autofill,
+  .insigh-input-field:-webkit-autofill:hover,
+  .insigh-input-field:-webkit-autofill:focus {
+    -webkit-box-shadow: 0 0 0 1000px var(--color-insigh-melanzane-50) inset;
+    -webkit-text-fill-color: #111827;
+    transition: background-color 5000s ease-in-out 0s;
+  }
+
+  .insigh-input-container--disabled .insigh-input-field:-webkit-autofill {
+    -webkit-box-shadow: 0 0 0 1000px var(--color-insigh-monsoon-50) inset;
+  }
+
+  .insigh-input-field:focus-visible {
+    outline: none;
+  }
+
+  @media (max-width: 640px) {
+    .insigh-input-field {
+      font-size: 16px;
+      padding: 0.75rem 0.875rem;
+    }
+
+    .insigh-input-icon--start {
+      padding-left: 0.75rem;
+    }
+
+    .insigh-input-icon--end,
+    .insigh-input-icon--button {
+      padding-right: 0.75rem;
+    }
+  }
+
+  @keyframes shake {
+    0%,
+    100% {
+      transform: translateX(0);
+    }
+    10%,
+    30%,
+    50%,
+    70%,
+    90% {
+      transform: translateX(-2px);
+    }
+    20%,
+    40%,
+    60%,
+    80% {
+      transform: translateX(2px);
+    }
+  }
+
+  .insigh-input-container--error {
+    animation: shake 0.4s ease-in-out;
+  }
+
+  .insigh-input-wrapper--small .insigh-input-field {
+    padding: 0.5rem 0.75rem;
+    font-size: 0.8125rem;
+  }
+
+  .insigh-input-wrapper--large .insigh-input-field {
+    padding: 0.875rem 1rem;
+    font-size: 1rem;
+  }
+
+  .insigh-input-field:read-only {
+    background-color: var(--color-insigh-monsoon-50);
+    cursor: default;
+  }
+
+  .insigh-input-field:read-only:focus {
+    outline: none;
   }
 }
