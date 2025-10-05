@@ -4,16 +4,38 @@
   .insigh-button {
     display: inline-flex;
     align-items: center;
-    padding: 12px 30px;
+    justify-content: center;
+    padding: var(--insigh-button-padding-y) var(--insigh-button-padding-x);
     border: none;
-    border-radius: 50px;
-    font-weight: 600;
-    font-size: 16px;
+    border-radius: var(--insigh-radius-full);
+    font-weight: var(--insigh-font-weight-semibold);
+    font-size: var(--insigh-font-size-md);
     cursor: pointer;
-    transition: all 0.3s ease;
+    transition: all var(--insigh-transition-medium) var(--insigh-ease-in-out);
     text-decoration: none;
     position: relative;
     overflow: hidden;
+    gap: var(--insigh-gap-sm);
+  }
+
+  .insigh-button::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+      90deg,
+      transparent,
+      rgba(255, 255, 255, 0.3),
+      transparent
+    );
+    transition: all var(--insigh-transition-slower) var(--insigh-ease-in-out);
+  }
+
+  .insigh-button:hover::before {
+    left: 100%;
   }
 
   .insigh-button-primary {
@@ -21,58 +43,19 @@
     color: white;
   }
 
-  .insigh-button-primary::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: -100%;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(
-      90deg,
-      transparent,
-      rgba(255, 255, 255, 0.3),
-      transparent
-    );
-    transition: all 0.6s ease;
-  }
-
   .insigh-button-primary:hover {
     background-color: var(--color-insigh-melanzane-700);
-  }
-
-  .insigh-button-primary:hover::before {
-    left: 100%;
   }
 
   .insigh-button-primary:disabled {
     background-color: var(--color-insigh-melanzane-200);
     cursor: not-allowed;
+    opacity: var(--insigh-opacity-60);
   }
 
   .insigh-button-secondary {
     background-color: var(--color-insigh-chambray-700);
     color: var(--color-insigh-font-color);
-  }
-
-  .insigh-button-secondary::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: -100%;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(
-      90deg,
-      transparent,
-      rgba(255, 255, 255, 0.3),
-      transparent
-    );
-    transition: all 0.6s ease;
-  }
-
-  .insigh-button-secondary:hover::before {
-    left: 100%;
   }
 
   .insigh-button-secondary:hover {
@@ -82,32 +65,12 @@
   .insigh-button-secondary:disabled {
     background-color: var(--color-insigh-chambray-500);
     cursor: not-allowed;
-    opacity: 0.6;
+    opacity: var(--insigh-opacity-60);
   }
 
   .insigh-button-danger {
     background-color: var(--color-insigh-error);
     color: var(--color-insigh-font-color);
-  }
-
-  .insigh-button-danger::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: -100%;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(
-      90deg,
-      transparent,
-      rgba(255, 255, 255, 0.3),
-      transparent
-    );
-    transition: all 0.6s ease;
-  }
-
-  .insigh-button-danger:hover::before {
-    left: 100%;
   }
 
   .insigh-button-danger:hover {
@@ -117,31 +80,91 @@
   .insigh-button-danger:disabled {
     background-color: var(--color-insigh-wewak-300);
     cursor: not-allowed;
-    opacity: 0.6;
+    opacity: var(--insigh-opacity-60);
   }
 
   .insigh-button_size--small {
-    font-size: calc(0.625rem * var(--scale-factor));
-    padding-block: calc(0.375rem * var(--scale-factor));
-    padding-inline: calc(0.75rem * var(--scale-factor));
-    height: calc(1.75rem * var(--scale-factor));
+    font-size: calc(var(--insigh-font-size-xs) * var(--insigh-scale-factor));
+    padding-block: calc(
+      var(--insigh-button-padding-small-y) * var(--insigh-scale-factor)
+    );
+    padding-inline: calc(
+      var(--insigh-button-padding-small-x) * var(--insigh-scale-factor)
+    );
+    height: calc(
+      var(--insigh-button-height-small) * var(--insigh-scale-factor)
+    );
   }
 
   .insigh-button_size--medium {
-    font-size: calc(0.75rem * var(--scale-factor));
-    padding-block: calc(0.5rem * var(--scale-factor));
-    padding-inline: calc(1rem * var(--scale-factor));
-    height: calc(2rem * var(--scale-factor));
+    font-size: calc(var(--insigh-font-size-sm) * var(--insigh-scale-factor));
+    padding-block: calc(
+      var(--insigh-button-padding-medium-y) * var(--insigh-scale-factor)
+    );
+    padding-inline: calc(
+      var(--insigh-button-padding-medium-x) * var(--insigh-scale-factor)
+    );
+    height: calc(
+      var(--insigh-button-height-medium) * var(--insigh-scale-factor)
+    );
   }
 
   .insigh-button_size--large {
-    font-size: calc(0.875rem * var(--scale-factor));
-    padding-block: calc(0.625rem * var(--scale-factor));
-    padding-inline: calc(1.25rem * var(--scale-factor));
-    height: calc(2.5rem * var(--scale-factor));
+    font-size: calc(var(--insigh-font-size-base) * var(--insigh-scale-factor));
+    padding-block: calc(
+      var(--insigh-button-padding-large-y) * var(--insigh-scale-factor)
+    );
+    padding-inline: calc(
+      var(--insigh-button-padding-large-x) * var(--insigh-scale-factor)
+    );
+    height: calc(
+      var(--insigh-button-height-large) * var(--insigh-scale-factor)
+    );
   }
 
   .insigh-button_size--stretched {
     width: 100%;
+    justify-content: center;
+  }
+
+  .insigh-button:focus-visible {
+    outline: 2px solid var(--color-insigh-focus);
+    outline-offset: 2px;
+    box-shadow: var(--insigh-shadow-focus);
+  }
+
+  .insigh-button:active:not(:disabled) {
+    transform: scale(0.98);
+  }
+
+  .insigh-button:disabled {
+    pointer-events: none;
+  }
+
+  .insigh-button--loading {
+    position: relative;
+    color: transparent;
+    pointer-events: none;
+  }
+
+  .insigh-button--loading::after {
+    content: "";
+    position: absolute;
+    width: 1rem;
+    height: 1rem;
+    top: 50%;
+    left: 50%;
+    margin-left: -0.5rem;
+    margin-top: -0.5rem;
+    border: 2px solid currentColor;
+    border-radius: var(--insigh-radius-circle);
+    border-right-color: transparent;
+    animation: insigh-button-spin 0.6s linear infinite;
+  }
+
+  @keyframes insigh-button-spin {
+    to {
+      transform: rotate(360deg);
+    }
   }
 }

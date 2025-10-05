@@ -1,18 +1,20 @@
-@layer InsigInput {
+@import "../base-size.css";
+
+@layer InsighInput {
   .insigh-input-wrapper {
     display: flex;
     flex-direction: column;
-    gap: 0.5rem;
+    gap: var(--insigh-gap-sm);
     width: 100%;
   }
 
   .insigh-input-label {
     display: block;
-    font-size: 0.875rem;
-    font-weight: 500;
+    font-size: var(--insigh-font-size-base);
+    font-weight: var(--insigh-font-weight-medium);
     color: var(--color-insigh-melanzane-900);
-    margin-bottom: 0.25rem;
-    transition: color 0.2s ease;
+    margin-bottom: var(--insigh-spacing-1);
+    transition: color var(--insigh-transition-base) var(--insigh-ease-out);
   }
 
   .insigh-input-label--disabled {
@@ -26,7 +28,7 @@
 
   .insigh-input-required {
     color: var(--color-insigh-error);
-    margin-left: 0.25rem;
+    margin-left: var(--insigh-spacing-1);
   }
 
   .insigh-input-container {
@@ -35,9 +37,10 @@
     align-items: center;
     width: 100%;
     background-color: var(--color-insigh-monsoon-50);
-    border: 2px solid var(--color-insigh-monsoon-300);
-    border-radius: 8px;
-    transition: all 0.2s ease;
+    border: var(--insigh-border-width-base) solid
+      var(--color-insigh-monsoon-300);
+    border-radius: var(--insigh-radius-base);
+    transition: all var(--insigh-transition-base) var(--insigh-ease-out);
     overflow: hidden;
   }
 
@@ -47,7 +50,7 @@
 
   .insigh-input-container--focused {
     border-color: var(--color-insigh-focus);
-    box-shadow: 0 0 0 3px var(--color-insigh-focus);
+    box-shadow: var(--insigh-shadow-focus);
   }
 
   .insigh-input-container--error {
@@ -55,7 +58,7 @@
   }
 
   .insigh-input-container--error.insigh-input-container--focused {
-    box-shadow: 0 0 0 3px rgba(220, 38, 38, 0.1);
+    box-shadow: var(--insigh-shadow-focus-error);
   }
 
   .insigh-input-container--success {
@@ -63,27 +66,27 @@
   }
 
   .insigh-input-container--success.insigh-input-container--focused {
-    box-shadow: 0 0 0 2px var(--color-insigh-success);
+    box-shadow: var(--insigh-shadow-focus-success);
   }
 
   .insigh-input-container--disabled {
     background-color: var(--color-insigh-monsoon-50);
     border-color: var(--color-insigh-border);
     cursor: not-allowed;
-    opacity: 0.6;
+    opacity: var(--insigh-opacity-60);
   }
 
   .insigh-input-field {
     flex: 1;
     width: 100%;
-    padding: 0.625rem 0.875rem;
-    font-size: 0.875rem;
-    line-height: 1.5;
+    padding: var(--insigh-input-padding-y) var(--insigh-input-padding-x);
+    font-size: var(--insigh-font-size-base);
+    line-height: var(--insigh-line-height-normal);
     color: var(--color-insigh-melanzane-900);
     background-color: transparent;
     border: none;
     outline: none;
-    transition: all 0.2s ease;
+    transition: all var(--insigh-transition-base) var(--insigh-ease-out);
   }
 
   .insigh-input-field::placeholder {
@@ -105,26 +108,26 @@
     justify-content: center;
     flex-shrink: 0;
     color: var(--color-insigh-monsoon-900);
-    transition: color 0.2s ease;
+    transition: color var(--insigh-transition-base) var(--insigh-ease-out);
   }
 
   .insigh-input-icon--start {
-    padding-left: 0.875rem;
-    padding-right: 0.5rem;
+    padding-left: var(--insigh-input-icon-padding);
+    padding-right: var(--insigh-input-icon-spacing);
   }
 
   .insigh-input-icon--end {
-    padding-right: 0.875rem;
-    padding-left: 0.5rem;
+    padding-right: var(--insigh-input-icon-padding);
+    padding-left: var(--insigh-input-icon-spacing);
   }
 
   .insigh-input-icon--button {
     background: none;
     border: none;
     cursor: pointer;
-    padding: 0.5rem 0.875rem;
+    padding: var(--insigh-spacing-2) var(--insigh-input-icon-padding);
     color: var(--color-insigh-monsoon-900);
-    transition: color 0.2s ease;
+    transition: color var(--insigh-transition-base) var(--insigh-ease-out);
   }
 
   .insigh-input-icon--button:hover:not(:disabled) {
@@ -133,13 +136,13 @@
 
   .insigh-input-icon--button:disabled {
     cursor: not-allowed;
-    opacity: 0.5;
+    opacity: var(--insigh-opacity-50);
   }
 
   .insigh-input-icon--button:focus-visible {
     outline: 2px solid var(--color-insigh-focus);
     outline-offset: 2px;
-    border-radius: 4px;
+    border-radius: var(--insigh-radius-sm);
   }
 
   .insigh-input-icon-svg {
@@ -152,8 +155,8 @@
   }
 
   .insigh-input-message {
-    font-size: 0.75rem;
-    line-height: 1.5;
+    font-size: var(--insigh-font-size-sm);
+    line-height: var(--insigh-line-height-normal);
     margin: 0;
     min-height: 1rem;
   }
@@ -164,22 +167,22 @@
 
   .insigh-input-message--error {
     color: var(--color-insigh-error);
-    font-weight: 500;
+    font-weight: var(--insigh-font-weight-medium);
   }
 
   .insigh-input-container:has(.insigh-input-icon--start) .insigh-input-field {
-    padding-left: 0.5rem;
+    padding-left: var(--insigh-input-icon-spacing);
   }
 
   .insigh-input-container:has(.insigh-input-icon--end) .insigh-input-field {
-    padding-right: 0.5rem;
+    padding-right: var(--insigh-input-icon-spacing);
   }
 
   .insigh-input-field:-webkit-autofill,
   .insigh-input-field:-webkit-autofill:hover,
   .insigh-input-field:-webkit-autofill:focus {
     -webkit-box-shadow: 0 0 0 1000px var(--color-insigh-melanzane-50) inset;
-    -webkit-text-fill-color: #111827;
+    -webkit-text-fill-color: var(--color-insigh-melanzane-900);
     transition: background-color 5000s ease-in-out 0s;
   }
 
@@ -193,17 +196,18 @@
 
   @media (max-width: 640px) {
     .insigh-input-field {
-      font-size: 16px;
-      padding: 0.75rem 0.875rem;
+      font-size: var(--insigh-font-size-md);
+      padding: calc(var(--insigh-input-padding-y) * 1.2)
+        var(--insigh-input-padding-x);
     }
 
     .insigh-input-icon--start {
-      padding-left: 0.75rem;
+      padding-left: calc(var(--insigh-input-icon-padding) * 0.85);
     }
 
     .insigh-input-icon--end,
     .insigh-input-icon--button {
-      padding-right: 0.75rem;
+      padding-right: calc(var(--insigh-input-icon-padding) * 0.85);
     }
   }
 
@@ -228,17 +232,21 @@
   }
 
   .insigh-input-container--error {
-    animation: shake 0.4s ease-in-out;
+    animation: shake var(--insigh-transition-slow) var(--insigh-ease-in-out);
   }
 
   .insigh-input-wrapper--small .insigh-input-field {
-    padding: 0.5rem 0.75rem;
-    font-size: 0.8125rem;
+    padding: var(--insigh-input-padding-small-y)
+      var(--insigh-input-padding-small-x);
+    font-size: var(--insigh-font-size-sm);
+    height: var(--insigh-input-height-small);
   }
 
   .insigh-input-wrapper--large .insigh-input-field {
-    padding: 0.875rem 1rem;
-    font-size: 1rem;
+    padding: var(--insigh-input-padding-large-y)
+      var(--insigh-input-padding-large-x);
+    font-size: var(--insigh-font-size-md);
+    height: var(--insigh-input-height-large);
   }
 
   .insigh-input-field:read-only {
