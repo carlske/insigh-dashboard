@@ -18,7 +18,7 @@ const Root = ({ children, border, borderstyle }: InsighCardProps) => {
   return (
     <div
       className={cn(
-        "max-w-sm rounded overflow-hidden shadow-lg bg-insigh-monsoon-100 transition-all duration-300 ease-in-out hover:opacity-90 hover:-translate-y-1",
+        "max-w-sm rounded overflow-hidden shadow-lg bg-insigh-chambray-50 transition-all duration-300 ease-in-out hover:opacity-90 hover:-translate-y-1",
         border && "border-4 border-insigh-chambray-200",
         border && borderstyle && borderStyleMap[borderstyle]
       )}

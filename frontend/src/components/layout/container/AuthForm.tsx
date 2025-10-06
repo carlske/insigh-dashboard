@@ -112,7 +112,7 @@ const AuthForm = ({ register = false }: AuthFormProps) => {
   };
 
   return (
-    <div className="auth-form bg-white p-8 rounded shadow-md w-full max-w-md">
+    <div className="auth-form bg-insigh-chambray-50 p-8 rounded shadow-md w-full max-w-md">
       <h2 className="text-2xl font-bold mb-6 text-center">
         {register ? "Register" : "Login"}
       </h2>

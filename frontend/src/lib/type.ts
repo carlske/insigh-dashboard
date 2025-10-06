@@ -21,3 +21,18 @@ export interface ApiResponseLogin {
 export interface User {
   email: string;
 }
+
+export interface ApiResponseTracks {
+  success: boolean;
+  data: Data;
+}
+
+export interface Data {
+  total: number;
+  byComponent: ByComponent[];
+}
+
+export interface ByComponent {
+  _id: string;
+  count: number;
+}
