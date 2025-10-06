@@ -17,7 +17,7 @@ It provides a user-friendly interface for interacting with the Insigh platform, 
 
 The Insigh UI follows a carefully designed color palette that ensures visual consistency and accessibility throughout the application:
 
-![Color Palette](../image/colors.png)
+![Color Palette](https://raw.githubusercontent.com/carlske/insigh-dashboard/refs/heads/main/image/colors.png)
 
 Our color system is built around semantic color tokens that include:
 

@@ -1,8 +1,10 @@
 # 📊 Insigh Dashboard
 
-Insigh es un dashboard para monitorear y analizar datos de usuarios en tiempo real.
+Insigh es un dashboard para monitorear y analizar datos de usuarios.
 Proporciona visualizaciones interactivas, informes detallados y un sistema de autenticación seguro.
 También incluye un design system modular para construir interfaces consistentes y reutilizables. llamado **Insigh UI**.
+
+> **⚠️ Nota de arquitectura**: Este sistema de diseño se encuentra temporalmente dentro del paquete frontend. El plan original era tenerlo como un paquete independiente en la raíz del repositorio mono (`/packages/design-system`) para una mejor reutilización en múltiples aplicaciones. Debido a limitaciones de tiempo, esta refactorización está prevista para futuras iteraciones.
 
 ![enter image description here](https://raw.githubusercontent.com/carlske/insigh-dashboard/refs/heads/main/image/Captura%20de%20pantalla%202025-10-06%20a%20la%28s%29%201.58.38%E2%80%AFa.m..png)
 
@@ -166,8 +168,8 @@ pnpm  lint
 ```
 
 ### Design System
-#Por tiempo ya no es un paquete independiente, sino que está integrado en el frontend.
 
+#Por tiempo ya no es un paquete independiente, sino que está integrado en el frontend.
 
 ```bash
 
