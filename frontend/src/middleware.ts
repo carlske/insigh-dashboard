@@ -9,8 +9,6 @@ export async function middleware(req: NextRequest) {
     req.nextUrl.pathname.startsWith(path)
   );
 
-  console.log("Middleware triggered for:", req.nextUrl.pathname);
-
   if (isProtected) {
     try {
       const verifyRes = await fetch(`${API_URL}/auth/verify`, {
@@ -18,8 +16,6 @@ export async function middleware(req: NextRequest) {
           cookie: req.headers.get("cookie") || "",
         },
       });
-
-      console.log("Verification response status:", verifyRes.status);
 
       if (!verifyRes.ok) {
         url.pathname = "/auth";

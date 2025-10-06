@@ -1,0 +1,55 @@
+@layer aurora-style {
+  .text-aurora {
+    background: linear-gradient(
+      135deg,
+      var(--color-insigh-chambray-300),
+      var(--color-insigh-chambray-700) 20%,
+      var(--color-insigh-melanzane-200) 40%,
+      var(--color-insigh-melanzane-700) 60%,
+      var(--color-insigh-chambray-50)
+    );
+    background-size: 200% 200%;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    font-weight: 800;
+    /* Tamaño responsivo usando clamp() */
+    font-size: clamp(2.5rem, 8vw + 1rem, 10rem);
+    line-height: 1.1;
+    animation: aurora-efect 8s infinite;
+  }
+
+  @keyframes aurora-efect {
+    0%,
+    100% {
+      background-position: 0%;
+    }
+    50% {
+      background-position: 100%;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .text-aurora {
+      font-size: clamp(2rem, 10vw, 3.5rem);
+    }
+  }
+
+  @media (min-width: 481px) and (max-width: 768px) {
+    .text-aurora {
+      font-size: clamp(3rem, 8vw, 6rem);
+    }
+  }
+
+  @media (min-width: 769px) and (max-width: 1024px) {
+    .text-aurora {
+      font-size: clamp(4rem, 7vw, 8rem);
+    }
+  }
+
+  @media (min-width: 1025px) {
+    .text-aurora {
+      font-size: clamp(6rem, 6vw, 10rem);
+    }
+  }
+}

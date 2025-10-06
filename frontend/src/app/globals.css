@@ -5,7 +5,7 @@ body {
   font-family: var(--insigh-typo_font-family--base);
   font-weight: var(--insigh-typo_font-weight--regular);
   color: var(--color-insigh-roman-coffee-200);
-  background-color: var(--color-insigh-accent-foreground);
+  background: var(--gradient-primary);
 }
 
 nav a {
