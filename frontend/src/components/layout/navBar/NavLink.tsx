@@ -1,19 +1,14 @@
-import { UserRound } from "lucide-react";
+import { HomeIcon } from "lucide-react";
 import Link from "next/link";
 
 const NavLink = () => {
   const links = [
-    { href: "/", title: "Home", type: "text" },
-    { href: "/library/button", title: "Button", type: "text" },
-    { href: "/library/card", title: "Card", type: "text" },
-    { href: "/library/input", title: "Input", type: "text" },
-    { href: "/library/modal", title: "Modal", type: "text" },
-    {
-      href: "/auth",
-      title: "Profile",
-      type: "icon",
-      icon: "user-round",
-    },
+    { href: "/", title: "Home", type: "icon", icon: "home" },
+    { href: "/library/button", title: "Button", type: "text", icon: "button" },
+    { href: "/library/card", title: "Card", type: "text", icon: "card" },
+    { href: "/library/input", title: "Input", type: "text", icon: "input" },
+    { href: "/library/modal", title: "Modal", type: "text", icon: "modal" },
+    { href: "/export", title: "Export", type: "text", icon: "export" },
   ];
 
   return (
@@ -26,7 +21,7 @@ const NavLink = () => {
         >
           {link.type === "text"
             ? link.title
-            : link.icon === "user-round" && <UserRound size={20} />}
+            : link.icon === "home" && <HomeIcon size={20} />}
         </Link>
       ))}
     </>

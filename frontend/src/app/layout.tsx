@@ -45,11 +45,9 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} ${roboto.variable} ${robotoCondensed.variable} antialiased`}
       >
-        <ConditionalNavBar>
-          <NavBar>
-            <NavLink />
-          </NavBar>
-        </ConditionalNavBar>
+        <NavBar>
+          <NavLink />
+        </NavBar>
         {children}
       </body>
     </html>

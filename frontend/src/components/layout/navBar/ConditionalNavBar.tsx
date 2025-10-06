@@ -8,7 +8,7 @@ export default function ConditionalNavBar({
   children: React.ReactNode;
 }) {
   const pathname = usePathname();
-  const isAuthPage = pathname?.startsWith("/auth");
+  const isAuthPage = pathname?.startsWith("/auth") || pathname === "/export";
 
   if (isAuthPage) {
     return null;

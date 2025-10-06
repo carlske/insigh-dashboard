@@ -32,8 +32,17 @@ export async function apiClient<T = unknown>(
       return null as T;
     }
 
-    const json = await response.json();
-    return json as T;
+    const contentType = response.headers.get("content-type") || "";
+
+    if (contentType.includes("application/json")) {
+      return await response.json();
+    }
+
+    if (contentType.includes("text/csv")) {
+      return (await response.text()) as T;
+    }
+
+    return (await response.text()) as T;
   } catch (err) {
     throw err;
   }

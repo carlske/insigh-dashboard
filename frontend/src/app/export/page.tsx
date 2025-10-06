@@ -1,8 +1,14 @@
+import CloseSection from "@/components/layout/container/CloseSeccion";
+import ExportContainer from "@/components/layout/container/ExportContainer";
+import ExportOptions from "@/components/layout/container/ExportOptions";
+
 export default function ExportHome() {
   return (
-    <div>
-      <h1>Authentication</h1>
-      <p>Please log in to continue.</p>
-    </div>
+    <section>
+      <ExportContainer>
+        <ExportOptions />
+      </ExportContainer>
+      <CloseSection />
+    </section>
   );
 }

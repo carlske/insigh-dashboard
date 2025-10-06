@@ -1,50 +1,32 @@
+import { API_URL } from "@/config/settings";
 import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
 
-export async function middleware(request: NextRequest) {
-  const url = request.nextUrl.clone();
-  const pathname = request.nextUrl.pathname;
-
-  // Define protected routes
-  const protectedPaths = ["/export", "/dashboard", "/admin"];
-
-  const isProtectedRoute = protectedPaths.some((path) =>
-    pathname.startsWith(path)
+export async function middleware(req: NextRequest) {
+  const url = req.nextUrl.clone();
+  const protectedPaths = ["/export"];
+  const isProtected = protectedPaths.some((path) =>
+    req.nextUrl.pathname.startsWith(path)
   );
 
-  console.log("🔒 Middleware checking:", pathname);
+  console.log("Middleware triggered for:", req.nextUrl.pathname);
 
-  if (isProtectedRoute) {
+  if (isProtected) {
     try {
-      // Use environment variable for backend URL
-      const backendUrl =
-        process.env.NEXT_PUBLIC_API_URL || "http://localhost:4000";
-
-      const verifyResponse = await fetch(`${backendUrl}/api/auth/verify`, {
-        method: "GET",
+      const verifyRes = await fetch(`${API_URL}/auth/verify`, {
         headers: {
-          Cookie: request.headers.get("cookie") || "",
-          "Content-Type": "application/json",
+          cookie: req.headers.get("cookie") || "",
         },
-        signal: AbortSignal.timeout(5000),
       });
 
-      console.log("🔍 Auth verify response status:", verifyResponse.status);
+      console.log("Verification response status:", verifyRes.status);
 
-      if (!verifyResponse.ok) {
-        console.log("❌ Authentication failed, redirecting to auth/login");
+      if (!verifyRes.ok) {
         url.pathname = "/auth";
         return NextResponse.redirect(url);
       }
-
-      // Optional: Parse and log user data
-      try {
-        const userData = await verifyResponse.json();
-      } catch (parseError) {
-        console.warn("⚠️ Failed to parse user data from verify response");
-      }
-    } catch (error) {
-      url.pathname = "/auth/login";
+    } catch (err) {
+      url.pathname = "/login";
       return NextResponse.redirect(url);
     }
   }
@@ -53,5 +35,5 @@ export async function middleware(request: NextRequest) {
 }
 
 export const config = {
-  matcher: ["/((?!api|_next/static|_next/image|favicon.ico|.*\\.).*)"],
+  matcher: ["/export/:path*"],
 };

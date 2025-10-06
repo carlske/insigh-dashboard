@@ -26,25 +26,7 @@ const NavBar = ({ children }: NavBarProps) => {
         <div className="hidden md:flex items-center space-x-4">{children}</div>
       </div>
 
-      {isOpen && (
-        <div className="md:hidden mt-2 space-y-2 text-center bg-insigh-melanzane-800 rounded-md p-4">
-          <a href="#" className="block text-white hover:text-gray-300">
-            Home
-          </a>
-          <a href="#" className="block text-white hover:text-gray-300">
-            Card
-          </a>
-          <a href="#" className="block text-white hover:text-gray-300">
-            Input
-          </a>
-          <a href="#" className="block text-white hover:text-gray-300">
-            Modal
-          </a>
-          <a href="#" className="block text-white hover:text-gray-300">
-            <UserRound className="inline-block" />
-          </a>
-        </div>
-      )}
+      {isOpen && <div className="md:hidden mt-4 space-y-2">{children}</div>}
     </nav>
   );
 };

@@ -12,6 +12,7 @@ import {
   FormInformation,
 } from "@/lib/type";
 import { clickRangeAdapter } from "@/adapter/clickRange";
+import { useRouter } from "next/navigation";
 
 interface AuthFormProps {
   register?: boolean;
@@ -20,6 +21,7 @@ interface AuthFormProps {
 const AuthForm = ({ register = false }: AuthFormProps) => {
   const emailRef = useRef<HTMLInputElement>(null);
   const passwordRef = useRef<HTMLInputElement>(null);
+  const router = useRouter();
   const { data, error, loading, request } = useApi<
     ApiResponseResgister | ApiResponseLogin
   >();
@@ -42,10 +44,18 @@ const AuthForm = ({ register = false }: AuthFormProps) => {
   }, [error]);
 
   const loginAction = async ({ email, password }: FormInformation) => {
-    await request("/auth/login", {
-      method: "POST",
-      body: JSON.stringify({ email, password }),
-    });
+    try {
+      const response = await request("/auth/login", {
+        method: "POST",
+        body: JSON.stringify({ email, password }),
+      });
+
+      if (response?.success) {
+        router.push("/export");
+      }
+    } catch (err) {
+      setIsErrorModalOpen(true);
+    }
   };
 
   const registerAction = async ({ email, password }: FormInformation) => {

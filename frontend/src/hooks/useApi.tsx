@@ -6,7 +6,7 @@ interface ApiResponse<T> {
   data: T | null;
   error: string | null;
   loading: boolean;
-  request: (url: string, options?: RequestInit) => Promise<void>;
+  request: (url: string, options?: RequestInit) => Promise<T>;
 }
 
 export function useApi<T = unknown>(): ApiResponse<T> {
@@ -14,19 +14,24 @@ export function useApi<T = unknown>(): ApiResponse<T> {
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
 
-  const request = useCallback(async (url: string, options?: RequestInit) => {
-    setLoading(true);
-    setError(null);
+  const request = useCallback(
+    async (url: string, options?: RequestInit): Promise<T> => {
+      setLoading(true);
+      setError(null);
 
-    try {
-      const res = await apiClient<T>(url, options);
-      setData(res);
-    } catch (err: any) {
-      setError(err.message || "Unexpected error");
-    } finally {
-      setLoading(false);
-    }
-  }, []);
+      try {
+        const res = await apiClient<T>(url, options);
+        setData(res);
+        return res;
+      } catch (err: any) {
+        setError(err.message || "Unexpected error");
+        throw err;
+      } finally {
+        setLoading(false);
+      }
+    },
+    []
+  );
 
   return { data, error, loading, request };
 }
