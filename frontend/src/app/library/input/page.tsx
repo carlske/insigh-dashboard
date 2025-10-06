@@ -67,7 +67,6 @@ export default function InputHome() {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    console.log("Form submitted:", formData);
     alert("Form submitted successfully! Check console for data.");
   };
 

@@ -11,6 +11,7 @@ import {
   ApiResponseResgister,
   FormInformation,
 } from "@/lib/type";
+import { clickRangeAdapter } from "@/adapter/clickRange";
 
 interface AuthFormProps {
   register?: boolean;
@@ -62,6 +63,12 @@ const AuthForm = ({ register = false }: AuthFormProps) => {
     const email = emailRef.current?.value || "";
     const password = passwordRef.current?.value || "";
 
+    clickRangeAdapter({
+      component: "AuthForm",
+      variant: register ? "register" : "login",
+      action: "submit",
+    });
+
     if (register) {
       await registerAction({ email, password });
     } else {
@@ -83,6 +90,15 @@ const AuthForm = ({ register = false }: AuthFormProps) => {
       ...prev,
       password: isPasswordValid ? "success" : "error",
     }));
+  };
+
+  const handleErrorModalClose = () => {
+    clickRangeAdapter({
+      component: "ErrorCase-Form",
+      variant: register ? "register" : "login",
+      action: "submit-error",
+    });
+    setIsErrorModalOpen(false);
   };
 
   return (
@@ -156,7 +172,7 @@ const AuthForm = ({ register = false }: AuthFormProps) => {
       {error && (
         <ErrorCase
           isOpen={isErrorModalOpen}
-          onClose={() => setIsErrorModalOpen(false)}
+          onClose={() => handleErrorModalClose()}
         />
       )}
 

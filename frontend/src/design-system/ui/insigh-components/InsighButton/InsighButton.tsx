@@ -36,11 +36,21 @@ interface InsighButtonProps extends React.ComponentPropsWithoutRef<"button"> {
   icon?: IconName;
 
   submit?: boolean;
+
+  isLoading?: boolean;
 }
 
 const InsighButton = forwardRef<HTMLButtonElement, InsighButtonProps>(
   (
-    { children, variant = "primary", size = "medium", icon, submit, ...props },
+    {
+      children,
+      variant = "primary",
+      size = "medium",
+      icon,
+      submit,
+      isLoading,
+      ...props
+    },
     ref
   ) => {
     return (
@@ -52,7 +62,12 @@ const InsighButton = forwardRef<HTMLButtonElement, InsighButtonProps>(
         )}
         {...props}
       >
-        {icon ? (
+        {isLoading ? (
+          <div className="flex justify-center items-center gap-2 w-full">
+            <DynamicIcon name="loader" color="white" />
+            <span>Loading...</span>
+          </div>
+        ) : icon ? (
           <div className="flex justify-center items-center gap-2 w-full">
             <DynamicIcon name={icon} color="white" />
 

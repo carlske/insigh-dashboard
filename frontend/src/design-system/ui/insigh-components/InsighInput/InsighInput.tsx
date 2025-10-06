@@ -8,6 +8,7 @@ import {
   useState,
 } from "react";
 import { Eye, EyeOff, Check } from "lucide-react";
+import { off } from "process";
 
 type InsighInputAdditionalProps = {
   /**
@@ -186,6 +187,7 @@ const InsighInput = forwardRef<HTMLInputElement, InsighInputProps>(
             ref={ref}
             id={identifier}
             type={inputType}
+            autoComplete={type == "password" ? "new-password" : "off"}
             disabled={disabled}
             placeholder={placeholder}
             required={required}

@@ -1,6 +1,5 @@
 "use client";
 import { createPortal } from "react-dom";
-import clsx from "clsx";
 import InsighButton from "../InsighButton/InsighButton";
 import {
   Children,
@@ -9,6 +8,7 @@ import {
   useEffect,
   useRef,
 } from "react";
+import { cn } from "@insigh-shared/utils/cn";
 
 export interface InsighModalProps
   extends React.ComponentPropsWithoutRef<"div"> {
@@ -104,7 +104,7 @@ export const InsighModal = ({
 
   const modalContent = (
     <div
-      className={clsx(
+      className={cn(
         "insigh-modal",
         `insigh-modal--${size}`,
         open && "insigh-modal--open",
@@ -148,7 +148,7 @@ export const InsighModalTitle = ({
 }: InsighModalTitleProps) => (
   <div
     id="insigh-modal-title"
-    className={clsx("insigh-modal__title", className)}
+    className={cn("insigh-modal__title", className)}
     {...props}
   >
     <h2 className="insigh-modal__title-text">{children}</h2>
@@ -172,7 +172,7 @@ export const InsighModalDescription = ({
 }: React.ComponentPropsWithoutRef<"div">) => (
   <div
     id="insigh-modal-description"
-    className={clsx("insigh-modal__body", className)}
+    className={cn("insigh-modal__body", className)}
     {...props}
   >
     {children}
@@ -184,7 +184,7 @@ export const InsighModalActions = ({
   className,
   ...props
 }: React.ComponentPropsWithoutRef<"div">) => (
-  <div className={clsx("insigh-modal__actions", className)} {...props}>
+  <div className={cn("insigh-modal__actions", className)} {...props}>
     {children}
   </div>
 );
