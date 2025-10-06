@@ -16,7 +16,7 @@ export default function Home() {
         </main>
       </div>
       <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
-        <span>Created by Carlos Diaz - Insigh 2024</span>
+        <span>Created by Carlos Diaz</span>
       </footer>
     </>
   );
