@@ -1,6 +1,10 @@
 # 📊 Insigh Dashboard
 
-Una plataforma moderna de dashboard construida con una arquitectura de monorepo que incluye backend, frontend y sistema de diseño.
+Insigh es un dashboard para monitorear y analizar datos de usuarios en tiempo real.
+Proporciona visualizaciones interactivas, informes detallados y un sistema de autenticación seguro.
+También incluye un design system modular para construir interfaces consistentes y reutilizables. llamado **Insigh UI**.
+
+![enter image description here](https://raw.githubusercontent.com/carlske/insigh-dashboard/refs/heads/main/image/Captura%20de%20pantalla%202025-10-06%20a%20la%28s%29%201.58.38%E2%80%AFa.m..png)
 
 ## 🏗️ Arquitectura del Proyecto
 
@@ -8,11 +12,17 @@ Este proyecto está organizado como un monorepo con las siguientes partes:
 
 ```
 insigh-ui/
-├── 🔧 backend/          # API REST con Node.js + Express + MongoDB
-├── 🎨 frontend/         # Dashboard con Next.js 15 + React 19
-├── 🎯 design-system/    # Componentes UI reutilizables
-├── 📦 shared/          # Utilidades compartidas
-└── 📋 package.json     # Configuración del workspace
+
+├── 🔧 backend/ # API REST con Node.js + Express + MongoDB
+
+├── 🎨 frontend/ # Dashboard con Next.js 15 + React 19
+
+├── 🎯 design-system/ # Componentes UI reutilizables
+
+├── 📦 shared/ # Utilidades compartidas
+
+└── 📋 package.json # Configuración del workspace
+
 ```
 
 ### Stack Tecnológico
@@ -20,66 +30,90 @@ insigh-ui/
 **Backend:**
 
 - Node.js + TypeScript
+
 - Express.js con middleware personalizado
+
 - MongoDB con Mongoose
+
 - JWT para autenticación
+
 - Swagger UI para documentación API
+
 - Docker Compose para desarrollo
 
 **Frontend:**
 
 - Next.js 15 con App Router
+
 - React 19 + TypeScript
+
 - Tailwind CSS v4
 
 **Design System:**
 
 - Componentes React reutilizables
-- CSS custom properties para temas
-- Sistema de tokens de diseño
-- Arquitectura modular
 
-## 🚀 Inicio Rápido
+- CSS custom properties para temas
+
+- Sistema de tokens de diseño
+
+- Arquitectura modular
 
 ### Prerrequisitos
 
 - Node.js 18+
+
 - pnpm 10+
+
 - Docker (opcional, para base de datos)
 
 ### Instalación
 
-1. **Clonar el repositorio:**
+1.  **Clonar el repositorio:**
 
 ```bash
-git clone [url-del-repo]
-cd insigh-ui
+
+git  clone [url-del-repo]
+
+cd  insigh-ui
+
 ```
 
-2. **Instalar dependencias:**
+2.  **Instalar dependencias (Monorepo) :**
 
 ```bash
-pnpm install
+
+pnpm  install
+pnpm  run
 ```
 
-3. **Configurar variables de entorno:**
+3.  **Configurar variables de entorno:**
 
 ````bash
-cp backend/.env.example backend/.env
-nano backend/.env
+
+cp  backend/.env.example  backend/.env
+
+nano  backend/.env
+
 ```bash
+
 # Copiar archivo de ejemplo
+
 cp backend/.env.example backend/.env
+
+
 
 # Editar variables según tu entorno
+
 nano backend/.env
+
 ````
 
-4. **Iniciar base de datos (Docker):**
+4.  **Iniciar base de datos (Docker):**
 
 ```bash
-cd backend
-docker-compose up -d mongo
+cd  backend
+docker-compose  up  -d  mongo
 ```
 
 ## 🏃‍♂️ Desarrollo
@@ -87,74 +121,82 @@ docker-compose up -d mongo
 ### Backend API
 
 ```bash
-cd backend
-
+cd  backend
 # Desarrollo con hot reload
-pnpm dev
-
+pnpm  dev
 # Build para producción
-pnpm build
+pnpm  build
 
-# Ejecutar en producción
-pnpm start
+  # Ejecutar en producción
+pnpm  start
 
 # Linting
-pnpm lint
+pnpm  lint
+
 ```
 
 **Endpoints principales:**
 
 - `GET /health` - Estado de salud de la API
+
 - `POST /auth/login` - Autenticación de usuarios
+
 - `GET /tracking/*` - Endpoints de seguimiento
+
 - `GET /api-docs` - Documentación Swagger
 
 ### Frontend Dashboard
 
 ```bash
-cd frontend
+cd  frontend
 
 # Desarrollo con Turbopack
-pnpm dev
+
+pnpm  dev
 
 # Build optimizado
-pnpm build
+pnpm  build
 
 # Servidor de producción
-pnpm start
+pnpm  start
 
 # Linting
-pnpm lint
+pnpm  lint
+
 ```
-
-**Características:**
-
-- Server-side rendering (SSR)
-- Optimización automática de imágenes
-- Soporte para modo claro/oscuro
-- Responsive design mobile-first
 
 ### Design System
 
 ```bash
-cd design-system
+
+cd  design-system
+
+
 
 # Los componentes se importan desde otros módulos
+
 # No requiere servidor independiente
+
 ```
 
 **Componentes disponibles:**
 
 - `InsighButton` - Botones con variantes
+
 - `InsighCard` - Tarjetas de contenido
+
 - `InsighInput` - Campos de entrada
+
 - `InsighModal` - Ventanas modales
 
 ## 🌐 URLs de Desarrollo
 
 - **Frontend:** http://localhost:3000
+
 - **Backend API:** http://localhost:4000
+
 - **API Docs:** http://localhost:4000/api-docs
+
 - **MongoDB:** mongodb://localhost:27017
 
 ## 📂 Estructura Detallada
@@ -162,29 +204,49 @@ cd design-system
 ### Backend (`/backend`)
 
 ```
+
 src/
-├── app.ts              # Configuración Express
-├── server.ts           # Punto de entrada
-├── config/             # Configuración (DB, env, Swagger)
-├── core/               # Middleware y utilidades core
-│   ├── errors/         # Manejo de errores
-│   ├── middleware/     # Auth middleware
-│   └── utils/          # Logger y utilidades
-└── modules/            # Módulos de la aplicación
-    ├── auth/           # Autenticación
-    ├── health/         # Health checks
-    └── tracking/       # Sistema de seguimiento
+
+├── app.ts # Configuración Express
+
+├── server.ts # Punto de entrada
+
+├── config/ # Configuración (DB, env, Swagger)
+
+├── core/ # Middleware y utilidades core
+
+│ ├── errors/ # Manejo de errores
+
+│ ├── middleware/ # Auth middleware
+
+│ └── utils/ # Logger y utilidades
+
+└── modules/ # Módulos de la aplicación
+
+├── auth/ # Autenticación
+
+├── health/ # Health checks
+
+└── tracking/ # Sistema de seguimiento
+
 ```
 
 ### Frontend (`/frontend`)
 
 ```
+
 src/
-├── app/                # Next.js App Router
-│   ├── layout.tsx      # Layout raíz con fonts
-│   ├── page.tsx        # Página principal
-│   └── globals.css     # Estilos Tailwind + custom props
-└── design-system/      # Symlink al design system
+
+├── app/ # Next.js App Router
+
+│ ├── layout.tsx # Layout raíz con fonts
+
+│ ├── page.tsx # Página principal
+
+│ └── globals.css # Estilos Tailwind + custom props
+
+└── design-system/ # Symlink al design system
+
 ```
 
 ## 🔧 Configuración
@@ -194,7 +256,9 @@ src/
 Copia `backend/.env.example` a `backend/.env` y configura:
 
 - `PORT` - Puerto del servidor (default: 4000)
+
 - `MONGO_URI` - URI de conexión MongoDB
+
 - `JWT_SECRET` - Clave secreta para JWT
 
 ### Configuración MongoDB
@@ -202,14 +266,19 @@ Copia `backend/.env.example` a `backend/.env` y configura:
 Para desarrollo local con Docker:
 
 - Usuario: `insigh_user`
+
 - Contraseña: `insigh_pass`
+
 - Puerto: `27017`
 
 ## 🧪 Testing
 
 ```bash
+
 # Ejecutar tests (cuando estén configurados)
-pnpm test
+
+pnpm  test
+
 ```
 
 ## 📦 Build y Deploy
@@ -217,29 +286,30 @@ pnpm test
 ### Backend
 
 ```bash
-cd backend
-pnpm build
-pnpm start
+
+cd  backend
+
+pnpm  build
+
+pnpm  start
+
 ```
 
 ### Frontend
 
 ```bash
-cd frontend
-pnpm build
-pnpm start
+
+cd  frontend
+
+pnpm  build
+
+pnpm  start
+
 ```
 
 ## 📝 Documentación Adicional
 
 - [Backend API Docs](./backend/README.md)
 - [Frontend Setup](./frontend/README.md)
-- [Design System](./design-system/README.md)
-
-## 📄 Licencia
-
-Este proyecto está bajo la Licencia ISC.
-
----
 
 **Desarrollado por Carlos V ❤️**
