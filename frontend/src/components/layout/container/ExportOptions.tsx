@@ -1,52 +1,47 @@
 "use client";
 import { clickRangeAdapter } from "@/adapter/clickRange";
+import { exportFileCSV, exportFileJSON } from "@/adapter/exportFile";
 import InsighButton from "@/design-system/ui/insigh-components/InsighButton/InsighButton";
 import InsighCard from "@/design-system/ui/insigh-components/InsighCard/InsighCard";
-import { useApi } from "@/hooks/useApi";
-import { exportData } from "@/lib/utils";
 import { useState } from "react";
 
 export const ExportOptions = () => {
-  const { data, error, loading, request } = useApi<any>();
-  const [exporting, setExporting] = useState(false);
+  const [isExportingJSON, setIsExportingJSON] = useState(false);
+  const [isExportingCSV, setIsExportingCSV] = useState(false);
 
-  const handleExportJSON = () => {
-    clickRangeAdapter({
-      component: "ExportOptions",
-      variant: "primary",
-      action: "export-json",
-    });
+  const handleExportJSON = async () => {
+    try {
+      setIsExportingJSON(true);
 
-    request("/components/export?format=json", {
-      method: "GET",
-      headers: {
-        Accept: "application/json",
-        "Content-Type": "application/json",
-      },
-    });
+      await exportFileJSON();
 
-    if (data) {
-      exportData(data, "data.json", "application/json");
+      clickRangeAdapter({
+        component: "ExportOptions",
+        variant: "primary",
+        action: "export-json",
+      });
+    } catch (error) {
+      console.error("Error exporting JSON:", error);
+    } finally {
+      setIsExportingJSON(false);
     }
   };
 
-  const handleExportCSV = () => {
-    clickRangeAdapter({
-      component: "ExportOptions",
-      variant: "primary",
-      action: "export-csv",
-    });
+  const handleExportCSV = async () => {
+    try {
+      setIsExportingCSV(true);
 
-    request("/components/export?format=csv", {
-      method: "GET",
-      headers: {
-        Accept: "text/csv",
-        "Content-Type": "text/csv",
-      },
-    });
+      clickRangeAdapter({
+        component: "ExportOptions",
+        variant: "primary",
+        action: "export-csv",
+      });
 
-    if (data) {
-      exportData(data, "data.csv", "text/csv");
+      await exportFileCSV();
+    } catch (error) {
+      console.error("Error exporting CSV:", error);
+    } finally {
+      setIsExportingCSV(false);
     }
   };
 
@@ -61,14 +56,18 @@ export const ExportOptions = () => {
               Here can you download your data in JSON format.
             </p>
             <div className="h-4" />
-            <InsighButton
-              onClick={handleExportJSON}
-              icon="download"
-              variant="primary"
-              size="stretched"
-            >
-              Export Data JSON
-            </InsighButton>
+            <form onSubmit={(e) => e.preventDefault()}>
+              <InsighButton
+                type="submit"
+                disabled={isExportingJSON}
+                onClick={handleExportJSON}
+                icon="download"
+                variant="primary"
+                size="stretched"
+              >
+                {isExportingJSON ? "Exporting..." : "Export Data JSON"}
+              </InsighButton>
+            </form>
           </div>
         </InsighCard.Body>
       </InsighCard>
@@ -83,12 +82,13 @@ export const ExportOptions = () => {
             </p>
             <div className="h-4" />
             <InsighButton
-              onClickCapture={handleExportCSV}
+              disabled={isExportingCSV}
+              onClick={handleExportCSV}
               icon="download"
               variant="primary"
               size="stretched"
             >
-              Export Data CSV
+              {isExportingCSV ? "Exporting..." : "Export Data CSV"}
             </InsighButton>
           </div>
         </InsighCard.Body>
