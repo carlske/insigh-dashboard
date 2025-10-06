@@ -94,7 +94,6 @@
     justify-content: flex-end;
     gap: var(--insigh-gap-md);
     padding: var(--insigh-modal-padding);
-    border-top: var(--insigh-border-width-thin) solid var(--color-insigh-border);
   }
 
   @keyframes modalFadeIn {

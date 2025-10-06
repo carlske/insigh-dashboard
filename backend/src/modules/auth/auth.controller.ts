@@ -29,6 +29,21 @@ export const AuthController = {
     }
   },
 
+  async verify(req: Request, res: Response, next: NextFunction) {
+    try {
+      const token = req.cookies?.jwt;
+      if (!token) {
+        return res
+          .status(401)
+          .json({ success: false, message: "No token provided" });
+      }
+      await AuthService.verifyToken(token);
+      res.json({ success: true, message: "Token is valid" });
+    } catch (err) {
+      next(err);
+    }
+  },
+
   async logout(_req: Request, res: Response, next: NextFunction) {
     try {
       res.cookie("jwt", "", {
