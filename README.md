@@ -166,6 +166,8 @@ pnpm  lint
 ```
 
 ### Design System
+#Por tiempo ya no es un paquete independiente, sino que está integrado en el frontend.
+
 
 ```bash
 
