@@ -12,9 +12,7 @@ export const ExportOptions = () => {
   const handleExportJSON = async () => {
     try {
       setIsExportingJSON(true);
-
       await exportFileJSON();
-
       clickRangeAdapter({
         component: "ExportOptions",
         variant: "primary",
@@ -30,13 +28,11 @@ export const ExportOptions = () => {
   const handleExportCSV = async () => {
     try {
       setIsExportingCSV(true);
-
       clickRangeAdapter({
         component: "ExportOptions",
         variant: "primary",
         action: "export-csv",
       });
-
       await exportFileCSV();
     } catch (error) {
       console.error("Error exporting CSV:", error);
@@ -56,18 +52,15 @@ export const ExportOptions = () => {
               Here can you download your data in JSON format.
             </p>
             <div className="h-4" />
-            <form onSubmit={(e) => e.preventDefault()}>
-              <InsighButton
-                type="submit"
-                disabled={isExportingJSON}
-                onClick={handleExportJSON}
-                icon="download"
-                variant="primary"
-                size="stretched"
-              >
-                {isExportingJSON ? "Exporting..." : "Export Data JSON"}
-              </InsighButton>
-            </form>
+            <InsighButton
+              disabled={isExportingJSON}
+              onClick={handleExportJSON}
+              icon="download"
+              variant="primary"
+              size="stretched"
+            >
+              {isExportingJSON ? "Exporting..." : "Export Data JSON"}
+            </InsighButton>
           </div>
         </InsighCard.Body>
       </InsighCard>
@@ -96,5 +89,4 @@ export const ExportOptions = () => {
     </div>
   );
 };
-
 export default ExportOptions;
