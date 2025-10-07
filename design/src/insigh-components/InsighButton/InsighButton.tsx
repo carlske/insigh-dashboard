@@ -8,13 +8,13 @@ interface InsighButtonProps extends React.ComponentPropsWithoutRef<"button"> {
    * The variant of the button.
    * @default "primary"
    */
-  variant?: "primary" | "secondary" | "danger";
+  variant?: InsighButtonVariant;
 
   /**
    * The size of the button.
    * @default "medium"
    */
-  size?: "small" | "medium" | "large" | "stretched";
+  size?: InsighButtonSize;
 
   /**
    * Whether the button is disabled.

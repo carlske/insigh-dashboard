@@ -1,0 +1,6 @@
+@import "./design-tokens/base-colors.css";
+@import "./design-tokens/base-typography.css";
+@import "./design-tokens/components/InsighButton.css";
+@import "./design-tokens/components/InsighInput.css";
+@import "./design-tokens/components/InsighModal.css";
+@import "./design-tokens/base-size.css";
