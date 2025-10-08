@@ -1,7 +1,6 @@
-import InsighButton from "@/design-system/ui/insigh-components/InsighButton/InsighButton";
-import InsighModal, {
-  InsighModalActions,
-} from "@/design-system/ui/insigh-components/InsighModal/InsighModal";
+import { InsighButton, InsighModal } from "@insigh-design/insigh-components";
+import { InsighModalActions } from "@insigh-design/insigh-components/InsighModal/InsighModal";
+
 interface ErrorCaseProps {
   isOpen: boolean;
   onClose?: () => void;

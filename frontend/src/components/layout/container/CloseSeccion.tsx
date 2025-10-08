@@ -1,6 +1,6 @@
 "use client";
 import { clickRangeAdapter } from "@/adapter/clickRange";
-import InsighButton from "@/design-system/ui/insigh-components/InsighButton/InsighButton";
+import { InsighButton } from "@insigh-design/insigh-components";
 import { useApi } from "@/hooks/useApi";
 import { useRouter } from "next/navigation";
 

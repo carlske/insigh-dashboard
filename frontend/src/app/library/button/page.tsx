@@ -1,5 +1,4 @@
-import InsighButton from "@/design-system/ui/insigh-components/InsighButton/InsighButton";
-import InsighCard from "@/design-system/ui/insigh-components/InsighCard/InsighCard";
+import { InsighButton, InsighCard } from "@insigh-design/insigh-components";
 
 export default function ButtonHome() {
   return (

@@ -1,8 +1,7 @@
 "use client";
 import { clickRangeAdapter } from "@/adapter/clickRange";
 import { exportFileCSV, exportFileJSON } from "@/adapter/exportFile";
-import InsighButton from "@/design-system/ui/insigh-components/InsighButton/InsighButton";
-import InsighCard from "@/design-system/ui/insigh-components/InsighCard/InsighCard";
+import { InsighButton, InsighCard } from "@insigh-design/insigh-components";
 import { useState } from "react";
 
 export const ExportOptions = () => {

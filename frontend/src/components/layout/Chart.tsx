@@ -12,8 +12,8 @@ import {
 } from "chart.js";
 import { Bar, Pie } from "react-chartjs-2";
 import { ChartColors } from "@/lib/chartSettings";
-import InsighButton from "@/design-system/ui/insigh-components/InsighButton/InsighButton";
 import { ApiResponseTracks } from "@/lib/type";
+import { InsighButton } from "@insigh-design/insigh-components";
 
 ChartJS.register(
   CategoryScale,

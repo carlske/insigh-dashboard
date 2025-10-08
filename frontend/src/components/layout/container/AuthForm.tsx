@@ -1,8 +1,7 @@
 "use client";
 import { ChangeEvent, RefObject, useEffect, useRef, useState } from "react";
 import { Link as LinkIcon } from "lucide-react";
-import InsighButton from "@/design-system/ui/insigh-components/InsighButton/InsighButton";
-import InsighInput from "@/design-system/ui/insigh-components/InsighInput/InsighInput";
+import { InsighInput, InsighButton } from "@insigh-design/insigh-components";
 import { useApi } from "@/hooks/useApi";
 import { useFormValidation } from "@/hooks/useFormValidation";
 import { ErrorCase } from "@/components/ui/ErrorCase";

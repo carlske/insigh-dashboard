@@ -1,6 +1,3 @@
-import InsighButton from "@/design-system/ui/insigh-components/InsighButton/InsighButton";
-import InsighCard from "@/design-system/ui/insigh-components/InsighCard/InsighCard";
-
 interface ExportContainerProps {
   children?: React.ReactNode;
 }

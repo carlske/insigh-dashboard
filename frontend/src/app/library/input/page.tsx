@@ -1,10 +1,11 @@
 "use client";
 import { cn } from "@insigh-shared/utils/cn";
 import { useState } from "react";
-import InsighButton from "@/design-system/ui/insigh-components/InsighButton/InsighButton";
-import InsighCard from "@/design-system/ui/insigh-components/InsighCard/InsighCard";
-import InsighInput from "@/design-system/ui/insigh-components/InsighInput/InsighInput";
-import { CheckIcon } from "lucide-react";
+import {
+  InsighButton,
+  InsighCard,
+  InsighInput,
+} from "@insigh-design/insigh-components";
 
 export default function InputHome() {
   const [formData, setFormData] = useState({
