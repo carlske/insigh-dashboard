@@ -12,7 +12,7 @@
     "allowImportingTsExtensions": true,
     "resolveJsonModule": true,
     "isolatedModules": true,
-    "jsx": "react-jsx",
+    "jsx": "preserve",
     "incremental": true,
     "plugins": [
       {
@@ -31,7 +31,8 @@
     "**/*.tsx",
     ".next/types/**/*.ts",
     "src/**/*",
-    "../shared/**/*"
+    "../shared/**/*",
+    "__mocks__"
   ],
   "exclude": ["node_modules", "dist"],
   "packages": ["design", "shared", "frontend", "packages/*"]
