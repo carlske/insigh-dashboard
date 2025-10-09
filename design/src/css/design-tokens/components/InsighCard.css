@@ -1,0 +1,102 @@
+@import "../base-size.css";
+@import "../base-colors.css";
+
+.insigh_card {
+  background-color: var(--color-insigh-melanzane-50);
+  font-weight: var(--insigh-font-weight-normal);
+  max-inline-size: 100%;
+  min-inline-size: min-content;
+  border-radius: var(--insigh-radius-200);
+  box-shadow: var(--insigh-shadow-100);
+  position: relative;
+}
+
+.vtmn-card_content {
+  margin: var(--insigh-margin-4);
+  display: flex;
+  flex-direction: column;
+  color: var(--color-insigh-primary);
+}
+
+.insigh-card_content
+  > *:not(.insigh-card_content--title, .insigh-card_content--body) {
+  margin-block-start: var(--insigh-spacing_3);
+}
+
+.insigh-card_content--title {
+  font-size: var(--insigh-font-size-2xl);
+  font-weight: var(--insigh-font-weight-semibold);
+  padding: var(--insigh-card-header-padding-y)
+    var(--insigh-card-header-padding-x);
+  line-height: 1.2;
+}
+
+.insigh-card_content--body {
+  font-size: var(--insigh-font-size-base);
+}
+
+.insigh-card,
+.insigh-card_variant--top-image {
+  display: flex;
+  flex-direction: column;
+  block-size: fit-content;
+  background-color: var(--insigh-semantic-color_background-primary);
+}
+
+.insigh-card > .insigh-card_image,
+.insigh-card_variant--top-image > .insigh-card_image {
+  inline-size: auto;
+  block-size: 100%;
+  margin: var(--insigh-padding-4);
+  position: relative;
+}
+
+.insigh-card_image img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+.insigh-card > .insigh-card_image--full,
+.insigh-card_variant--top-image > .insigh-card_image--full {
+  inline-size: fit-content;
+  block-size: 100%;
+  margin: 0;
+}
+
+.insigh-card_content--footer {
+  font-size: var(--insigh-font-size-sm);
+  color: var(--color-insigh-monsoon-700);
+  padding-block: var(--insigh-card-footer-padding-y);
+  padding-inline: var(--insigh-card-footer-padding-x);
+  margin-block-start: var(--insigh-margin-4);
+}
+
+.insigh-card_container--border-solid {
+  border: var(--insigh-border-width-thick) solid var(--color-insigh-border);
+}
+
+.insigh-card_container--border-dashed {
+  border: var(--insigh-border-width-thick) dashed var(--color-insigh-border);
+}
+
+.insigh-card_container--border-dotted {
+  border: var(--insigh-border-width-thick) dotted var(--color-insigh-border);
+}
+
+.insigh-card_container--border-none {
+  border: none;
+}
+
+.insigh-card_container--content-opaque {
+  background-color: var(--insigh-semantic-color_background-secondary);
+  padding: var(--insigh-card-padding);
+  border-radius: var(--insigh-radius-lg);
+  margin: var(--insigh-margin-4);
+  box-shadow: var(--insigh-shadow-sm);
+}
+
+.insigh-card_image:hover {
+  opacity: 0.8;
+  transition: opacity 0.3s ease;
+}

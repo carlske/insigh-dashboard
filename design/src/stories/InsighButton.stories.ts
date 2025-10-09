@@ -5,7 +5,7 @@ import { fn } from "storybook/test";
 import InsighButton from "@/insigh-components/InsighButton/InsighButton";
 
 const meta = {
-  title: "Example/InsighButton",
+  title: "Components/InsighButton",
   component: InsighButton,
   parameters: {
     layout: "centered",

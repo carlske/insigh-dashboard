@@ -164,4 +164,20 @@
   --insigh-opacity-100: 1;
 
   --insigh-scale-factor: 1;
+
+  --insigh-margin-4: 1rem;
+  --insigh-margin-3: 0.75rem;
+  --insigh-margin-2: 0.5rem;
+  --insigh-margin-1: 0.25rem;
+
+  --insigh-spacing_3: 0.75rem;
+  --insigh-spacing_4: 1rem;
+  --insigh-spacing_5: 1.25rem;
+  --insigh-spacing_6: 1.5rem;
+  --insigh-spacing_8: 2rem;
+
+  --insigh-padding-4: 1rem;
+  --insigh-padding-3: 0.75rem;
+  --insigh-padding-2: 0.5rem;
+  --insigh-padding-1: 0.25rem;
 }

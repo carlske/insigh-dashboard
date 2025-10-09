@@ -73,6 +73,18 @@
   --color-insigh-placeholder: var(--color-insigh-monsoon-300);
   --color-insigh-focus: var(--color-insigh-chambray-300);
 
+  --insigh-semantic-color_background-primary: var(--color-insigh-melanzane-50);
+  --insigh-semantic-color_background-secondary: var(
+    --color-insigh-melanzane-100
+  );
+  --insigh-semantic-color_background-tertiary: var(
+    --color-insigh-melanzane-200
+  );
+  --insigh-semantic-color_background-accent: var(--color-insigh-chambray-700);
+  --insigh-semantic-color_background-accent-foreground: var(
+    --color-insigh-monsoon-50
+  );
+
   /* Gradient Colors */
   --gradient-primary: linear-gradient(
     135deg,

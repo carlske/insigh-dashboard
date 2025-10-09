@@ -75,121 +75,135 @@ export default function InputHome() {
     <div>
       <main className="flex flex-col md:flex-row gap-8 p-8 flex-wrap sm:p-20 w-full">
         <InsighCard>
-          <InsighCard.Header title="InsighInput Component" />
-          <InsighCard.Body>
-            <div className="mb-6">
-              <p className="font-medium text-gray-700">
-                InsighInput is used to capture user input in forms. It supports
-                multiple types, validation states, and accessibility features.
-              </p>
-            </div>
+          <InsighCard.Content>
+            <InsighCard.Header title="InsighInput Example" />
+            <InsighCard.Body>
+              <div className={cn("w-full max-w-3xl p-4")}>
+                <div className=" mb-6">
+                  <p className="font-medium text-gray-700">
+                    InsighInput is used to capture user input in forms. It
+                    supports multiple types, validation states, and
+                    accessibility features.
+                  </p>
+                  <p>This is an example of a form with validation.</p>
+                </div>
 
-            <form
-              onSubmit={handleSubmit}
-              className="flex flex-col gap-6 w-full max-w-md"
-            >
-              {/* Name Input */}
-              <div className="flex flex-col gap-2">
-                <label htmlFor="input-name" className="font-medium text-sm">
-                  Name
-                </label>
-                <InsighInput
-                  identifier="input-name"
-                  id="input-name"
-                  type="text"
-                  placeholder="Enter your name"
-                  value={formData.name}
-                  onChange={(e) => handleInputChange("name", e.target.value)}
-                  validationState={validationState.name}
-                  helperText={
-                    validationState.name === "error"
-                      ? "Name must be at least 3 characters"
-                      : validationState.name === "success"
-                      ? "Looks good!"
-                      : undefined
-                  }
-                />
+                <form
+                  onSubmit={handleSubmit}
+                  className="flex flex-col gap-6 w-full max-w-md"
+                >
+                  <div className="flex flex-col gap-2">
+                    <label htmlFor="input-name" className="font-medium text-sm">
+                      Name
+                    </label>
+                    <InsighInput
+                      identifier="input-name"
+                      id="input-name"
+                      type="text"
+                      placeholder="Enter your name"
+                      value={formData.name}
+                      onChange={(e) =>
+                        handleInputChange("name", e.target.value)
+                      }
+                      validationState={validationState.name}
+                      helperText={
+                        validationState.name === "error"
+                          ? "Name must be at least 3 characters"
+                          : validationState.name === "success"
+                          ? "Looks good!"
+                          : undefined
+                      }
+                    />
+                  </div>
+
+                  <div className="flex flex-col gap-2">
+                    <label
+                      htmlFor="input-email"
+                      className="font-medium text-sm"
+                    >
+                      Email
+                    </label>
+                    <InsighInput
+                      identifier="input-email"
+                      id="input-email"
+                      type="email"
+                      placeholder="Enter your email"
+                      value={formData.email}
+                      onChange={(e) =>
+                        handleInputChange("email", e.target.value)
+                      }
+                      validationState={validationState.email}
+                      helperText={
+                        validationState.email === "error"
+                          ? "Please enter a valid email address"
+                          : validationState.email === "success"
+                          ? "Valid email!"
+                          : undefined
+                      }
+                    />
+                  </div>
+
+                  <div className="flex flex-col gap-2">
+                    <label
+                      htmlFor="input-password"
+                      className="font-medium text-sm"
+                    >
+                      Password
+                    </label>
+                    <InsighInput
+                      identifier="input-password"
+                      id="input-password"
+                      type="password"
+                      placeholder="Enter your password"
+                      value={formData.password}
+                      onChange={(e) =>
+                        handleInputChange("password", e.target.value)
+                      }
+                      validationState={validationState.password}
+                      helperText={
+                        validationState.password === "error"
+                          ? "Password must be at least 6 characters"
+                          : validationState.password === "success"
+                          ? "Strong password!"
+                          : undefined
+                      }
+                    />
+                  </div>
+
+                  <div className="flex flex-col gap-2">
+                    <label
+                      htmlFor="input-comments"
+                      className="font-medium text-sm"
+                    >
+                      Comments (Disabled)
+                    </label>
+                    <InsighInput
+                      identifier="input-comments"
+                      id="input-comments"
+                      type="text"
+                      placeholder="This field is disabled"
+                      value={formData.comments}
+                      disabled
+                      helperText="This input is disabled and cannot be edited"
+                    />
+                  </div>
+
+                  <InsighButton
+                    variant="primary"
+                    size="medium"
+                    type="submit"
+                    disabled={
+                      validationState.name !== "success" ||
+                      validationState.email !== "success" ||
+                      validationState.password !== "success"
+                    }
+                  >
+                    Submit Form
+                  </InsighButton>
+                </form>
               </div>
-
-              {/* Email Input */}
-              <div className="flex flex-col gap-2">
-                <label htmlFor="input-email" className="font-medium text-sm">
-                  Email
-                </label>
-                <InsighInput
-                  identifier="input-email"
-                  id="input-email"
-                  type="email"
-                  placeholder="Enter your email"
-                  value={formData.email}
-                  onChange={(e) => handleInputChange("email", e.target.value)}
-                  validationState={validationState.email}
-                  helperText={
-                    validationState.email === "error"
-                      ? "Please enter a valid email address"
-                      : validationState.email === "success"
-                      ? "Valid email!"
-                      : undefined
-                  }
-                />
-              </div>
-
-              {/* Password Input */}
-              <div className="flex flex-col gap-2">
-                <label htmlFor="input-password" className="font-medium text-sm">
-                  Password
-                </label>
-                <InsighInput
-                  identifier="input-password"
-                  id="input-password"
-                  type="password"
-                  placeholder="Enter your password"
-                  value={formData.password}
-                  onChange={(e) =>
-                    handleInputChange("password", e.target.value)
-                  }
-                  validationState={validationState.password}
-                  helperText={
-                    validationState.password === "error"
-                      ? "Password must be at least 6 characters"
-                      : validationState.password === "success"
-                      ? "Strong password!"
-                      : undefined
-                  }
-                />
-              </div>
-
-              {/* Disabled Input */}
-              <div className="flex flex-col gap-2">
-                <label htmlFor="input-comments" className="font-medium text-sm">
-                  Comments (Disabled)
-                </label>
-                <InsighInput
-                  identifier="input-comments"
-                  id="input-comments"
-                  type="text"
-                  placeholder="This field is disabled"
-                  value={formData.comments}
-                  disabled
-                  helperText="This input is disabled and cannot be edited"
-                />
-              </div>
-
-              {/* Submit Button */}
-              <InsighButton
-                variant="primary"
-                size="medium"
-                type="submit"
-                disabled={
-                  validationState.name !== "success" ||
-                  validationState.email !== "success" ||
-                  validationState.password !== "success"
-                }
-              >
-                Submit Form
-              </InsighButton>
-            </form>
-          </InsighCard.Body>
+            </InsighCard.Body>
+          </InsighCard.Content>
         </InsighCard>
       </main>
     </div>

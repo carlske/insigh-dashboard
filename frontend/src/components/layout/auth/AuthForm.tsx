@@ -1,11 +1,9 @@
-"use client"; // Importante: añade esto al inicio del archivo
-
+"use client";
 import { InsighInput } from "@insigh-design/insigh-components";
 import AuthSubmit from "./AuthSubmit";
 import { RefObject, useRef, useState } from "react";
 import { useFormValidation } from "@/hooks/useFormValidation";
 import { useRouter } from "next/navigation";
-import { post } from "@/lib/http";
 import { loginAdapter, registerAdapter } from "@/adapter/auth";
 
 interface AuthFormProps {
@@ -18,11 +16,10 @@ const AuthForm = ({ register }: AuthFormProps) => {
   const [error, setError] = useState<boolean>(false);
   const router = useRouter();
 
-  const { validationState, handleValidationChange, resetValidation } =
-    useFormValidation(
-      passwordRef as RefObject<HTMLInputElement>,
-      emailRef as RefObject<HTMLInputElement>
-    );
+  const { validationState, handleValidationChange } = useFormValidation(
+    passwordRef as RefObject<HTMLInputElement>,
+    emailRef as RefObject<HTMLInputElement>
+  );
 
   const handleSubmit = async () => {
     setError(false);

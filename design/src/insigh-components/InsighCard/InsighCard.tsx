@@ -1,242 +1,96 @@
-import { ReactNode, HTMLAttributes } from "react";
-import Image from "next/image";
 import { cn } from "@insigh-shared/utils/cn";
+import { ComponentPropsWithoutRef, ReactNode } from "react";
 
-interface InsighCardRootProps extends HTMLAttributes<HTMLDivElement> {
+interface InsighCardProps extends ComponentPropsWithoutRef<"div"> {
   /**
-   * Content to be displayed inside the card
+   * The variant of the card
+   * @defaultValue 'top-image'
    */
-  children: ReactNode;
+  variant?: "top-image" | "full-image";
 
   /**
-   * Whether to show a border around the card
-   * @default false
+   * The opaque property of image,
+   * only on card variant 'full-image'
+   * @defaultValue false
    */
-  border?: boolean;
+  contentOpaque?: boolean;
 
   /**
-   * Style of the border
-   * @default "solid"
-   */
-  borderStyle?: "solid" | "dashed" | "dotted";
-
-  /**
-   * Whether to apply hover effects
-   * @default true
-   */
-  hoverable?: boolean;
-
-  /**
-   * Custom className to extend styles
-   */
-  className?: string;
-}
-
-interface InsighCardHeaderProps extends HTMLAttributes<HTMLDivElement> {
-  /**
-   * Title text to display in the header
-   */
-  title: string;
-
-  /**
-   * Optional subtitle or description
-   */
-  subtitle?: string;
-
-  /**
-   * Custom className
-   */
-  className?: string;
-}
-
-interface InsighCardBodyProps extends HTMLAttributes<HTMLDivElement> {
-  /**
-   * Content of the card body
-   */
-  children: ReactNode;
-
-  /**
-   * Custom className
-   */
-  className?: string;
-}
-
-interface InsighCardFooterProps extends HTMLAttributes<HTMLDivElement> {
-  /**
-   * Footer text content
-   */
-  text?: string;
-
-  /**
-   * Alternative: pass children for custom content
+   * The content to render inside the component.
+   * @defaultValue undefined
    */
   children?: ReactNode;
 
+  /** If true, the card will have a border.
+   * @defaultValue false
+   */
+  borderStyle?: "solid" | "dashed" | "dotted" | "none";
+
   /**
-   * Custom className
+   * Additional class names to apply to the card container.
    */
   className?: string;
-}
-
-interface InsighCardImageProps {
-  /**
-   * Image source URL
-   */
-  src: string;
-
-  /**
-   * Alt text for accessibility
-   */
-  alt: string;
-
-  /**
-   * Image width
-   * @default 400
-   */
-  width?: number;
-
-  /**
-   * Image height
-   * @default 300
-   */
-  height?: number;
-
-  /**
-   * Object fit style
-   * @default "cover"
-   */
-  objectFit?: "cover" | "contain" | "fill" | "none" | "scale-down";
-
-  /**
-   * Custom className for the container
-   */
-  className?: string;
-
-  /**
-   * Custom className for the image
-   */
-  imageClassName?: string;
-
-  /**
-   * Whether to use Next.js Image component for optimization
-   * @default true
-   */
-  useNextImage?: boolean;
 }
 
 const Root = ({
   children,
-  border = false,
-  borderStyle = "solid",
-  hoverable = true,
+  borderStyle = "none",
+  contentOpaque = false,
   className,
-  ...props
-}: InsighCardRootProps) => {
-  const borderStyleMap: Record<"solid" | "dashed" | "dotted", string> = {
-    solid: "border-solid",
-    dashed: "border-dashed",
-    dotted: "border-dotted",
-  };
-
+}: InsighCardProps) => {
   return (
     <div
       className={cn(
-        "",
-        hoverable && "hover:opacity-90 hover:-translate-y-1 hover:shadow-xl",
-        border && "border-4 border-insigh-chambray-200",
-        border && borderStyle && borderStyleMap[borderStyle],
+        "insigh-card",
+        { [`insigh-card_container--border-${borderStyle}`]: borderStyle },
+        { "insigh-card_container--content-opaque": contentOpaque },
         className
       )}
-      {...props}
     >
       {children}
     </div>
   );
 };
 
-const Header = ({
-  title,
-  subtitle,
-  className,
-  ...props
-}: InsighCardHeaderProps) => {
-  return (
-    <div className={cn("px-6 py-4", className)} {...props}>
-      <h3 className="font-bold text-xl mb-1">{title}</h3>
-      {subtitle && (
-        <p className="text-sm text-insigh-monsoon-700">{subtitle}</p>
-      )}
-    </div>
-  );
+const Content = ({ children }: { children: ReactNode }) => {
+  return <div className={cn("insigh-card_content--body")}>{children}</div>;
 };
 
-const Body = ({ children, className, ...props }: InsighCardBodyProps) => {
-  return (
-    <div className={cn("px-6 py-4", className)} {...props}>
-      {children}
-    </div>
-  );
+const Header = ({ title }: { title: string }) => {
+  return <h1 className={cn("insigh-card_content--title")}>{title}</h1>;
 };
 
-const Footer = ({
-  text,
+const Image = ({
   children,
-  className,
-  ...props
-}: InsighCardFooterProps) => {
+  fullImage = false,
+}: {
+  children: ReactNode;
+  fullImage?: boolean;
+}) => {
   return (
     <div
-      className={cn(
-        "px-6 pt-4 pb-2 text-sm text-insigh-monsoon-900",
-        className
-      )}
-      {...props}
+      className={cn("insigh-card_image", {
+        "insigh-card_image--full": fullImage,
+      })}
     >
-      {children || text}
+      {children}
     </div>
   );
 };
 
-const CardImage = ({
-  src,
-  alt,
-  width = 400,
-  height = 300,
-  objectFit = "cover",
-  className,
-  imageClassName,
-  useNextImage = true,
-}: InsighCardImageProps) => {
-  const containerClasses = cn("relative w-full h-48", className);
-  const imageClasses = cn(`object-${objectFit} w-full h-full`, imageClassName);
+const Body = ({ children }: { children: ReactNode }) => {
+  return <div className={cn("insigh-card_content--body")}>{children}</div>;
+};
 
-  return (
-    <div className={containerClasses}>
-      {useNextImage ? (
-        <Image
-          src={src}
-          alt={alt}
-          fill
-          className={imageClasses}
-          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-        />
-      ) : (
-        <img
-          src={src}
-          alt={alt}
-          width={width}
-          height={height}
-          className={imageClasses}
-        />
-      )}
-    </div>
-  );
+const Footer = ({ children }: { children: ReactNode }) => {
+  return <div className={cn("insigh-card_content--footer")}>{children}</div>;
 };
 
 export const InsighCard = Object.assign(Root, {
   Header,
-  Image: CardImage,
+  Image,
   Body,
+  Content,
   Footer,
 });
 

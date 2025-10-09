@@ -8,8 +8,6 @@ const links = [
   { href: "/library/button", title: "Button", type: "text" },
   { href: "/library/card", title: "Card", type: "text" },
   { href: "/library/input", title: "Input", type: "text" },
-  { href: "/library/modal", title: "Modal", type: "text" },
-  { href: "/dashboard", title: "Dashboard", type: "text" },
 ];
 
 const NavLink = () => {

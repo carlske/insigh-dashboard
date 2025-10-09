@@ -83,6 +83,20 @@
     opacity: var(--insigh-opacity-60);
   }
 
+  .insigh-button-success {
+    background-color: var(--color-insigh-sugar-cane-300);
+  }
+
+  .insigh-button-success:hover {
+    background-color: var(--color-insigh-sugar-cane-400);
+  }
+
+  .insigh-button-success:disabled {
+    background-color: var(--color-insigh-sugar-cane-100);
+    cursor: not-allowed;
+    opacity: var(--insigh-opacity-60);
+  }
+
   .insigh-button_size--small {
     font-size: calc(var(--insigh-font-size-xs) * var(--insigh-scale-factor));
     padding-block: calc(
