@@ -1,12 +1,10 @@
 "use client";
 import { clickRangeAdapter } from "@/adapter/clickRange";
+import { post } from "@/lib/http";
 import { InsighButton } from "@insigh-design/insigh-components";
-import { useApi } from "@/hooks/useApi";
 import { useRouter } from "next/navigation";
 
 const CloseSection = () => {
-  const { data, error, loading, request } = useApi<any>();
-
   const router = useRouter();
 
   const handleCloseSection = async () => {
@@ -17,8 +15,7 @@ const CloseSection = () => {
     });
 
     try {
-      const response = await request("/auth/logout", {
-        method: "POST",
+      const response = await post("/auth/logout", {
         body: JSON.stringify({}),
       });
 

@@ -5,7 +5,6 @@ export default function ButtonHome() {
     <div>
       <main className="flex flex-col md:flex-row gap-8 p-8 flex-wrap sm:p-20 w-full">
         <InsighCard>
-          <InsighCard.Image src="/card-button.jpg" alt="Buttons Primary" />
           <InsighCard.Header title="Buttons Primary" />
           <InsighCard.Body>
             <div className="mb-4">
@@ -38,7 +37,6 @@ export default function ButtonHome() {
         </InsighCard>
 
         <InsighCard>
-          <InsighCard.Image src="/card-button.jpg" alt="Buttons Secondary" />
           <InsighCard.Header title="Buttons Secondary" />
           <InsighCard.Body>
             <div className="mb-4">
@@ -72,7 +70,6 @@ export default function ButtonHome() {
         </InsighCard>
 
         <InsighCard>
-          <InsighCard.Image src="/card-button.jpg" alt="Buttons danger" />
           <InsighCard.Header title="Buttons danger" />
           <InsighCard.Body>
             <div className="mb-4">

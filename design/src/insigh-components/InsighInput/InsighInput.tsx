@@ -2,13 +2,11 @@
 import { cn } from "@insigh-shared/utils/cn";
 import {
   ComponentPropsWithoutRef,
-  forwardRef,
   JSX,
   MouseEventHandler,
   useState,
 } from "react";
 import { Eye, EyeOff, Check } from "lucide-react";
-import { off } from "process";
 
 type InsighInputAdditionalProps = {
   /**
@@ -99,6 +97,13 @@ type InsighInputAdditionalProps = {
    * @defaultValue false
    */
   required?: boolean;
+
+  /**
+   * ref to the input element
+   * @type {React.Ref<HTMLInputElement>}
+   * @defaultValue undefined
+   */
+  ref?: React.Ref<HTMLInputElement>;
 };
 
 export type InsighInputProps = Omit<
@@ -107,151 +112,147 @@ export type InsighInputProps = Omit<
 > &
   InsighInputAdditionalProps;
 
-const InsighInput = forwardRef<HTMLInputElement, InsighInputProps>(
-  (
-    {
-      identifier,
-      labelClassName,
-      label,
-      type = "text",
-      validationState = "default",
-      disabled = false,
-      placeholder,
-      helperText,
-      errorMessage,
-      showPasswordToggle = true,
-      startIcon,
-      endIcon,
-      className,
-      required = false,
-      ...props
-    }: InsighInputProps,
-    ref
-  ) => {
-    const [showPassword, setShowPassword] = useState(false);
-    const [isFocused, setIsFocused] = useState(false);
+const InsighInput = ({
+  identifier,
+  labelClassName,
+  label,
+  type = "text",
+  validationState = "default",
+  disabled = false,
+  placeholder,
+  helperText,
+  errorMessage,
+  showPasswordToggle = true,
+  startIcon,
+  endIcon,
+  className,
+  required = false,
+  ref,
+  ...props
+}: InsighInputProps) => {
+  const [showPassword, setShowPassword] = useState(false);
+  const [isFocused, setIsFocused] = useState(false);
 
-    const labelContent = label;
+  const labelContent = label;
 
-    const isError = validationState === "error";
-    const isSuccess = validationState === "success";
+  const isError = validationState === "error";
+  const isSuccess = validationState === "success";
 
-    const inputType =
-      type === "password" && showPassword && showPasswordToggle ? "text" : type;
+  const inputType =
+    type === "password" && showPassword && showPasswordToggle ? "text" : type;
 
-    const handleTogglePassword = () => {
-      setShowPassword((prev) => !prev);
-    };
+  const handleTogglePassword = () => {
+    setShowPassword((prev) => !prev);
+  };
 
-    return (
-      <div className="insigh-input-wrapper">
-        {labelContent && (
-          <label
-            htmlFor={identifier}
-            className={cn(
-              "insigh-input-label",
-              {
-                "insigh-input-label--disabled": disabled,
-                "insigh-input-label--error": isError,
-              },
-              labelClassName
-            )}
-            {...props.labelProps}
-          >
-            {typeof labelContent === "string" ? (
-              <>
-                {labelContent}
-                {required && <span className="insigh-input-required">*</span>}
-              </>
-            ) : (
-              labelContent
-            )}
-          </label>
+  return (
+    <div className="insigh-input-wrapper">
+      {labelContent && (
+        <label
+          htmlFor={identifier}
+          className={cn(
+            "insigh-input-label",
+            {
+              "insigh-input-label--disabled": disabled,
+              "insigh-input-label--error": isError,
+            },
+            labelClassName
+          )}
+          {...props.labelProps}
+        >
+          {typeof labelContent === "string" ? (
+            <>
+              {labelContent}
+              {required && <span className="insigh-input-required">*</span>}
+            </>
+          ) : (
+            labelContent
+          )}
+        </label>
+      )}
+
+      <div
+        className={cn("insigh-input-container", {
+          "insigh-input-container--focused": isFocused && !disabled,
+          "insigh-input-container--disabled": disabled,
+          "insigh-input-container--error": isError && !disabled,
+          "insigh-input-container--success": isSuccess && !disabled,
+        })}
+      >
+        {startIcon && (
+          <div className="insigh-input-icon insigh-input-icon--start">
+            {startIcon}
+          </div>
         )}
 
-        <div
-          className={cn("insigh-input-container", {
-            "insigh-input-container--focused": isFocused && !disabled,
-            "insigh-input-container--disabled": disabled,
-            "insigh-input-container--error": isError && !disabled,
-            "insigh-input-container--success": isSuccess && !disabled,
-          })}
-        >
-          {startIcon && (
-            <div className="insigh-input-icon insigh-input-icon--start">
-              {startIcon}
-            </div>
-          )}
+        <input
+          ref={ref}
+          id={identifier}
+          type={inputType}
+          disabled={disabled}
+          placeholder={placeholder}
+          required={required}
+          aria-invalid={isError ? "true" : "false"}
+          aria-required={required}
+          aria-describedby={
+            isError && errorMessage
+              ? `${identifier}-error`
+              : helperText
+              ? `${identifier}-helper`
+              : undefined
+          }
+          onFocus={() => setIsFocused(true)}
+          onBlur={() => setIsFocused(false)}
+          className={cn("insigh-input-field", className)}
+          {...props}
+        />
 
-          <input
-            ref={ref}
-            id={identifier}
-            type={inputType}
+        {type === "password" && showPasswordToggle ? (
+          <button
+            type="button"
+            onClick={handleTogglePassword}
             disabled={disabled}
-            placeholder={placeholder}
-            required={required}
-            aria-invalid={isError ? "true" : "false"}
-            aria-required={required}
-            aria-describedby={
-              isError && errorMessage
-                ? `${identifier}-error`
-                : helperText
-                ? `${identifier}-helper`
-                : undefined
-            }
-            onFocus={() => setIsFocused(true)}
-            onBlur={() => setIsFocused(false)}
-            className={cn("insigh-input-field", className)}
-            {...props}
-          />
-
-          {type === "password" && showPasswordToggle ? (
-            <button
-              type="button"
-              onClick={handleTogglePassword}
-              disabled={disabled}
-              className="insigh-input-icon insigh-input-icon--end insigh-input-icon--button"
-              aria-label={showPassword ? "Hide password" : "Show password"}
-              tabIndex={-1}
-            >
-              {showPassword ? (
-                <EyeOffIcon className="insigh-input-icon-svg" />
-              ) : (
-                <EyeIcon className="insigh-input-icon-svg" />
-              )}
-            </button>
-          ) : endIcon ? (
-            <div className="insigh-input-icon insigh-input-icon--end">
-              {endIcon}
-            </div>
-          ) : null}
-
-          {!endIcon && type !== "password" && isSuccess && (
-            <div className="insigh-input-icon insigh-input-icon--end">
-              <CheckIcon className="insigh-input-icon-svg text-insigh-success" />
-            </div>
-          )}
-        </div>
-
-        {isError && errorMessage ? (
-          <p
-            id={`${identifier}-error`}
-            className="insigh-input-message insigh-input-message--error"
+            className="insigh-input-icon insigh-input-icon--end insigh-input-icon--button"
+            aria-label={showPassword ? "Hide password" : "Show password"}
+            tabIndex={-1}
           >
-            {errorMessage}
-          </p>
-        ) : helperText ? (
-          <p
-            id={`${identifier}-helper`}
-            className="insigh-input-message insigh-input-message--helper"
-          >
-            {helperText}
-          </p>
+            {showPassword ? (
+              <EyeOffIcon className="insigh-input-icon-svg" />
+            ) : (
+              <EyeIcon className="insigh-input-icon-svg" />
+            )}
+          </button>
+        ) : endIcon ? (
+          <div className="insigh-input-icon insigh-input-icon--end">
+            {endIcon}
+          </div>
         ) : null}
+
+        {!endIcon && type !== "password" && isSuccess && (
+          <div className="insigh-input-icon insigh-input-icon--end">
+            <CheckIcon className="insigh-input-icon-svg text-insigh-success" />
+          </div>
+        )}
       </div>
-    );
-  }
-);
+
+      {isError && errorMessage ? (
+        <p
+          id={`${identifier}-error`}
+          className="insigh-input-message insigh-input-message--error"
+        >
+          {errorMessage}
+        </p>
+      ) : helperText ? (
+        <p
+          id={`${identifier}-helper`}
+          className="insigh-input-message insigh-input-message--helper"
+        >
+          {helperText}
+        </p>
+      ) : null}
+    </div>
+  );
+};
 
 const EyeIcon = ({ className }: { className?: string }) => (
   <Eye className={className} width={20} height={20} />
@@ -264,7 +265,5 @@ const EyeOffIcon = ({ className }: { className?: string }) => (
 const CheckIcon = ({ className }: { className?: string }) => (
   <Check className={className} width={20} height={20} />
 );
-
-InsighInput.displayName = "InsighInput";
 
 export default InsighInput;

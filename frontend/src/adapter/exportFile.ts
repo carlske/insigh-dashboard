@@ -1,9 +1,8 @@
-import { apiClient } from "@/lib/apiClient";
 import { exportData } from "@/lib/utils";
+import { get } from "http";
 
 export const exportFileCSV = async () => {
-  const response = await apiClient("/components/export?format=csv", {
-    method: "GET",
+  const response = await get("/components/export?format=csv", {
     headers: {
       Accept: "text/csv",
       "Content-Type": "text/csv",
@@ -16,8 +15,7 @@ export const exportFileCSV = async () => {
 };
 
 export const exportFileJSON = async () => {
-  const response = await apiClient("/components/export?format=json", {
-    method: "GET",
+  const response = await get("/components/export?format=json", {
     headers: {
       Accept: "application/json",
       "Content-Type": "application/json",

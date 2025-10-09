@@ -1,4 +1,4 @@
-import ChartContainer from "@/components/layout/ChartContainer";
+import ChartContainer from "@/components/layout/chart/ChartContainer";
 import Dashboard from "@/components/layout/Dashboard";
 import ChartSkeleton from "@/components/ui/ChartSkeleton";
 import { Suspense } from "react";

@@ -1,5 +1,5 @@
 import { EMAIL_REGEX } from "@/lib/validations";
-import { useState } from "react";
+import { ChangeEvent, startTransition, useState } from "react";
 
 export const useFormValidation = (
   password: React.RefObject<HTMLInputElement> | null,
@@ -27,11 +27,54 @@ export const useFormValidation = (
     return validateEmail(emailValue) && validatePassword(passwordValue);
   };
 
+  const handleValidationChange = (
+    e: ChangeEvent<HTMLInputElement>,
+    type: "email" | "password"
+  ) => {
+    const value = e.target.value;
+
+    startTransition(() => {
+      setValidationState((prev) => ({
+        ...prev,
+        [type]:
+          type === "email"
+            ? validateEmail(value)
+              ? "success"
+              : value.length > 0
+              ? "error"
+              : "default"
+            : validatePassword(value)
+            ? "success"
+            : value.length > 0
+            ? "error"
+            : "default",
+      }));
+    });
+  };
+
+  const cleanUp = () => {
+    setValidationState({
+      email: "default",
+      password: "default",
+    });
+  };
+
+  const cleanUpRef = () => {
+    if (email && email.current) email.current.value = "";
+    if (password && password.current) password.current.value = "";
+  };
+
+  const resetValidation = () => {
+    cleanUp();
+    cleanUpRef();
+  };
+
   return {
     validateEmail,
     validatePassword,
     validationState,
-    setValidationState,
+    handleValidationChange,
+    resetValidation,
     isValid,
   };
 };

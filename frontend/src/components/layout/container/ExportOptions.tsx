@@ -44,7 +44,6 @@ export const ExportOptions = () => {
     <div className="flex flex-col md:flex-row gap-6 p-10">
       <InsighCard>
         <InsighCard.Header title="Export Options" />
-        <InsighCard.Image src="/card-input.jpg" alt="Export Illustration" />
         <InsighCard.Body>
           <div className="mb-4">
             <p className="text-gray-600">
@@ -66,7 +65,6 @@ export const ExportOptions = () => {
 
       <InsighCard>
         <InsighCard.Header title="Export Options" />
-        <InsighCard.Image src="/card-input.jpg" alt="Export Illustration" />
         <InsighCard.Body>
           <div className="mb-4">
             <p className="text-gray-600">

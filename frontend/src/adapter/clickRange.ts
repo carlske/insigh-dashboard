@@ -1,4 +1,4 @@
-import { apiClient } from "@/lib/apiClient";
+import { post } from "@/lib/http";
 
 export interface ClickRange {
   component: string;
@@ -8,8 +8,7 @@ export interface ClickRange {
 
 export async function clickRangeAdapter(clickRange: ClickRange) {
   try {
-    await apiClient("/components/track", {
-      method: "POST",
+    await post("/components/track", {
       body: JSON.stringify(clickRange),
       skipJsonParse: true,
     });

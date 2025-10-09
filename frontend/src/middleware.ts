@@ -4,7 +4,7 @@ import type { NextRequest } from "next/server";
 
 export async function middleware(req: NextRequest) {
   const url = req.nextUrl.clone();
-  const protectedPaths = ["/export"];
+  const protectedPaths = ["/dashboard"];
   const isProtected = protectedPaths.some((path) =>
     req.nextUrl.pathname.startsWith(path)
   );
@@ -18,11 +18,11 @@ export async function middleware(req: NextRequest) {
       });
 
       if (!verifyRes.ok) {
-        url.pathname = "/auth";
+        url.pathname = "/auth/login";
         return NextResponse.redirect(url);
       }
     } catch (err) {
-      url.pathname = "/login";
+      url.pathname = "/auth/login";
       return NextResponse.redirect(url);
     }
   }
@@ -31,5 +31,5 @@ export async function middleware(req: NextRequest) {
 }
 
 export const config = {
-  matcher: ["/export/:path*"],
+  matcher: ["/dashboard/:path*"],
 };

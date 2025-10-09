@@ -75,7 +75,6 @@ export default function InputHome() {
     <div>
       <main className="flex flex-col md:flex-row gap-8 p-8 flex-wrap sm:p-20 w-full">
         <InsighCard>
-          <InsighCard.Image src="/card-input.jpg" alt="InsighInput" />
           <InsighCard.Header title="InsighInput Component" />
           <InsighCard.Body>
             <div className="mb-6">

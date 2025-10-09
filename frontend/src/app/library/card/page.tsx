@@ -20,7 +20,7 @@ export default function ButtonHome() {
           </InsighCard.Body>
         </InsighCard>
 
-        <InsighCard border borderstyle="dashed">
+        <InsighCard border borderStyle="dashed">
           <InsighCard.Body>
             <div className="mb-4">
               <p className="font-medium">
@@ -36,7 +36,7 @@ export default function ButtonHome() {
           </InsighCard.Body>
         </InsighCard>
 
-        <InsighCard border borderstyle="dotted">
+        <InsighCard border borderStyle="dotted">
           <InsighCard.Body>
             <div className="mb-4">
               <p className="font-medium">
@@ -52,7 +52,7 @@ export default function ButtonHome() {
           </InsighCard.Body>
         </InsighCard>
 
-        <InsighCard border borderstyle="solid">
+        <InsighCard border borderStyle="solid">
           <InsighCard.Body>
             <div className="mb-4">
               <p className="font-medium">
@@ -69,7 +69,6 @@ export default function ButtonHome() {
         </InsighCard>
 
         <InsighCard>
-          <InsighCard.Image src="/card-page.png" alt="Card Page" />
           <InsighCard.Header title="Buttons Primary" />
           <InsighCard.Body>
             <div className="mb-4">

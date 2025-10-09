@@ -1,5 +1,5 @@
 "use client";
-import React, { useEffect } from "react";
+import { useState } from "react";
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -26,7 +26,7 @@ ChartJS.register(
 );
 
 export default function Chart({ data: { data } }: { data: ApiResponseTracks }) {
-  const [chartType, setChartType] = React.useState("bar");
+  const [chartType, setChartType] = useState("bar");
 
   const labels = data.byComponent.map((item) => item._id);
   const counts = data.byComponent.map((item) => item.count);

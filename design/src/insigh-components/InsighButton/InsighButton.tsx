@@ -2,6 +2,7 @@ import { forwardRef } from "react";
 import { InsighButtonSize, InsighButtonVariant } from ".";
 import { cn } from "@insigh-shared/utils/cn";
 import { DynamicIcon, type IconName } from "lucide-react/dynamic";
+import InsighSpinner from "../InsighSpinner/InsighSpinner";
 
 interface InsighButtonProps extends React.ComponentPropsWithoutRef<"button"> {
   /**
@@ -35,51 +36,76 @@ interface InsighButtonProps extends React.ComponentPropsWithoutRef<"button"> {
    */
   icon?: IconName;
 
+  /*
+   * If true, the button will be of type "submit".
+   * @default false
+   */
   submit?: boolean;
 
+  /**
+   * Whether the button is in loading state.
+   * @default false
+   */
   isLoading?: boolean;
+
+  /**
+   * Ref to the button element.
+   * @default undefined
+   */
+  ref?: React.Ref<HTMLButtonElement>;
 }
 
-const InsighButton = forwardRef<HTMLButtonElement, InsighButtonProps>(
-  (
-    {
-      children,
-      variant = "primary",
-      size = "medium",
-      icon,
-      submit,
-      isLoading,
-      ...props
-    },
-    ref
-  ) => {
-    return (
-      <button
-        ref={ref}
-        type={submit ? "submit" : "button"}
-        className={cn(
-          `insigh-button insigh-button-${variant} insigh-button_size--${size} `
-        )}
-        {...props}
-      >
-        {isLoading ? (
-          <div className="flex justify-center items-center gap-2 w-full">
-            <DynamicIcon name="loader" color="white" />
-            <span>Loading...</span>
+const InsighButton = ({
+  children,
+  variant = "primary",
+  size = "medium",
+  icon,
+  submit,
+  isLoading = false,
+  disabled = false,
+  ref,
+  ...props
+}: InsighButtonProps) => {
+  const renderContent = () => {
+    if (isLoading) {
+      return (
+        <div className="flex justify-center items-center gap-2 w-full">
+          <div className="animation-insigh-button-spin">
+            <InsighSpinner width={16} height={16} />
           </div>
-        ) : icon ? (
-          <div className="flex justify-center items-center gap-2 w-full">
-            <DynamicIcon name={icon} color="white" />
+        </div>
+      );
+    }
 
-            {children}
-          </div>
-        ) : (
-          children
-        )}
-      </button>
-    );
-  }
-);
+    if (icon) {
+      return (
+        <div className="flex justify-center items-center gap-2 w-full">
+          <DynamicIcon name={icon} color="white" />
+          {children}
+        </div>
+      );
+    }
+
+    return children;
+  };
+
+  return (
+    <button
+      ref={ref}
+      type={submit ? "submit" : "button"}
+      disabled={disabled || isLoading}
+      className={cn(
+        "insigh-button",
+        `insigh-button-${variant}`,
+        `insigh-button_size--${size}`,
+        isLoading && "insigh-button-loading"
+      )}
+      {...props}
+    >
+      {renderContent()}
+    </button>
+  );
+};
 
 InsighButton.displayName = "InsighButton";
 
