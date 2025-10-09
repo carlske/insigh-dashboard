@@ -1,319 +1,113 @@
-# 📊 Insigh Dashboard
+# 🎨 Insigh UI
 
-Insigh es un dashboard para monitorear y analizar datos de usuarios.
-Proporciona visualizaciones interactivas, informes detallados y un sistema de autenticación seguro.
-También incluye un design system modular para construir interfaces consistentes y reutilizables. llamado **Insigh UI**.
+**Insigh UI** is a modular and reusable **React component library** built with **TypeScript** and **Tailwind CSS**.  
+It provides a consistent foundation for creating elegant, accessible, and scalable interfaces.
 
-> **⚠️ Nota de arquitectura**: Este sistema de diseño se encuentra temporalmente dentro del paquete frontend. El plan original era tenerlo como un paquete independiente en la raíz del repositorio mono (`/packages/design-system`) para una mejor reutilización en múltiples aplicaciones. Debido a limitaciones de tiempo, esta refactorización está prevista para futuras iteraciones.
+![Insigh UI Screenshot](https://raw.githubusercontent.com/carlske/insigh-dashboard/refs/heads/main/image/inicio.png)
 
-![enter image description here](https://raw.githubusercontent.com/carlske/insigh-dashboard/refs/heads/main/image/Captura%20de%20pantalla%202025-10-06%20a%20la%28s%29%201.58.38%E2%80%AFa.m..png)
+---
 
-## 🏗️ Arquitectura del Proyecto
+## 🧱 Project Overview
 
-Este proyecto está organizado como un monorepo con las siguientes partes:
+The goal of **Insigh UI** is to establish a unified design language across applications.  
+It includes a growing set of React components, design tokens, and utilities for rapid UI development.
 
-```
-insigh-ui/
+### ⚙️ Tech Stack
 
-├── 🔧 backend/ # API REST con Node.js + Express + MongoDB
+- **React + TypeScript**
+- **Tailwind CSS v4**
+- **CSS Custom Properties** for theming
+- **Storybook (optional)** for documentation
 
-├── 🎨 frontend/ # Dashboard con Next.js 15 + React 19
+---
 
-├── 🎯 design-system/ # Componentes UI reutilizables
-
-├── 📦 shared/ # Utilidades compartidas
-
-└── 📋 package.json # Configuración del workspace
+## 📁 Project Structure
 
 ```
 
-### Stack Tecnológico
+```
 
-**Backend:**
+---
 
-- Node.js + TypeScript
+## 🚀 Getting Started
 
-- Express.js con middleware personalizado
-
-- MongoDB con Mongoose
-
-- JWT para autenticación
-
-- Swagger UI para documentación API
-
-- Docker Compose para desarrollo
-
-**Frontend:**
-
-- Next.js 15 con App Router
-
-- React 19 + TypeScript
-
-- Tailwind CSS v4
-
-**Design System:**
-
-- Componentes React reutilizables
-
-- CSS custom properties para temas
-
-- Sistema de tokens de diseño
-
-- Arquitectura modular
-
-### Prerrequisitos
-
-- Node.js 18+
-
-- pnpm 10+
-
-- Docker (opcional, para base de datos)
-
-### Instalación
-
-1.  **Clonar el repositorio:**
+### 1️⃣ Install dependencies
 
 ```bash
-
-git  clone [url-del-repo]
-
-cd  insigh-ui
-
+pnpm install
 ```
 
-2.  **Instalar dependencias (Monorepo) :**
+### 2️⃣ Run the local playground
 
 ```bash
-
-pnpm  install
-pnpm  run
+pnpm dev
 ```
 
-3.  **Configurar variables de entorno:**
-
-````bash
-
-cp  backend/.env.example  backend/.env
-
-nano  backend/.env
+### 3️⃣ Build the library
 
 ```bash
-
-# Copiar archivo de ejemplo
-
-cp backend/.env.example backend/.env
-
-
-
-# Editar variables según tu entorno
-
-nano backend/.env
-
-````
-
-4.  **Iniciar base de datos (Docker):**
-
-```bash
-cd  backend
-docker-compose  up  -d  mongo
+pnpm build
 ```
 
-## 🏃‍♂️ Desarrollo
+---
 
-### Backend API
+## 🎨 Components Available
 
-```bash
-cd  backend
-# Desarrollo con hot reload
-pnpm  dev
-# Build para producción
-pnpm  build
+- **InsighButton** — Versatile button component with variants and sizes.
+- **InsighCard** — Content container with border and hover effects.
+- **InsighInput** — Form input field with validation states.
+- **InsighModal** — Accessible modal dialog component. (_coming soon_)
+- **Typography & Tokens** — Consistent text and spacing system.
 
-  # Ejecutar en producción
-pnpm  start
+---
 
-# Linting
-pnpm  lint
+## 🧩 Design Tokens
 
-```
+Design tokens define the visual language of the system.
 
-**Endpoints principales:**
+| Category       | Description                                                     |
+| -------------- | --------------------------------------------------------------- |
+| **Colors**     | Neutral and brand palette (Roman Coffee, Foggy Gray, Big Stone) |
+| **Typography** | Font sizes, weights, and line-heights                           |
+| **Spacing**    | Consistent padding and margins                                  |
+| **Radius**     | Rounded shapes for modern UIs                                   |
 
-- `GET /health` - Estado de salud de la API
+---
 
-- `POST /auth/login` - Autenticación de usuarios
+## 🧠 Architecture Notes
 
-- `GET /tracking/*` - Endpoints de seguimiento
+The design system follows **a modular structure** intended to be published as a standalone NPM package.  
+For now, it lives within the frontend workspace, but it’s prepared to be extracted into `/packages/design-system` in a monorepo setup.
 
-- `GET /api-docs` - Documentación Swagger
-
-### Frontend Dashboard
-
-```bash
-cd  frontend
-
-# Desarrollo con Turbopack
-
-pnpm  dev
-
-# Build optimizado
-pnpm  build
-
-# Servidor de producción
-pnpm  start
-
-# Linting
-pnpm  lint
-
-```
-
-### Design System
-
-#Por tiempo ya no es un paquete independiente, sino que está integrado en el frontend.
-
-```bash
-
-cd  design-system
-
-
-
-# Los componentes se importan desde otros módulos
-
-# No requiere servidor independiente
-
-```
-
-**Componentes disponibles:**
-
-- `InsighButton` - Botones con variantes
-
-- `InsighCard` - Tarjetas de contenido
-
-- `InsighInput` - Campos de entrada
-
-- `InsighModal` - Ventanas modales
-
-## 🌐 URLs de Desarrollo
-
-- **Frontend:** http://localhost:3000
-
-- **Backend API:** http://localhost:4000
-
-- **API Docs:** http://localhost:4000/api-docs
-
-- **MongoDB:** mongodb://localhost:27017
-
-## 📂 Estructura Detallada
-
-### Backend (`/backend`)
-
-```
-
-src/
-
-├── app.ts # Configuración Express
-
-├── server.ts # Punto de entrada
-
-├── config/ # Configuración (DB, env, Swagger)
-
-├── core/ # Middleware y utilidades core
-
-│ ├── errors/ # Manejo de errores
-
-│ ├── middleware/ # Auth middleware
-
-│ └── utils/ # Logger y utilidades
-
-└── modules/ # Módulos de la aplicación
-
-├── auth/ # Autenticación
-
-├── health/ # Health checks
-
-└── tracking/ # Sistema de seguimiento
-
-```
-
-### Frontend (`/frontend`)
-
-```
-
-src/
-
-├── app/ # Next.js App Router
-
-│ ├── layout.tsx # Layout raíz con fonts
-
-│ ├── page.tsx # Página principal
-
-│ └── globals.css # Estilos Tailwind + custom props
-
-└── design-system/ # Symlink al design system
-
-```
-
-## 🔧 Configuración
-
-### Variables de Entorno (Backend)
-
-Copia `backend/.env.example` a `backend/.env` y configura:
-
-- `PORT` - Puerto del servidor (default: 4000)
-
-- `MONGO_URI` - URI de conexión MongoDB
-
-- `JWT_SECRET` - Clave secreta para JWT
-
-### Configuración MongoDB
-
-Para desarrollo local con Docker:
-
-- Usuario: `insigh_user`
-
-- Contraseña: `insigh_pass`
-
-- Puerto: `27017`
+---
 
 ## 🧪 Testing
 
 ```bash
-
-# Ejecutar tests (cuando estén configurados)
-
-pnpm  test
-
+pnpm test
 ```
 
-## 📦 Build y Deploy
+Unit tests can be implemented using **Vitest** or **Jest** for component validation.
 
-### Backend
+---
+
+## 📦 Build and Distribution
+
+To export as a library package:
 
 ```bash
-
-cd  backend
-
-pnpm  build
-
-pnpm  start
-
+pnpm build
 ```
 
-### Frontend
+Then link or publish it to your NPM registry for reuse across projects.
 
-```bash
+---
 
-cd  frontend
+## 🧭 Vision
 
-pnpm  build
+> **Insigh UI** aims to bridge design and development, providing a strong visual identity and scalable UI foundation for future projects.
 
-pnpm  start
+---
 
-```
-
-## 📝 Documentación Adicional
-
-- [Backend API Docs](./backend/README.md)
-- [Frontend Setup](./frontend/README.md)
-
-**Desarrollado por Carlos V ❤️**
+**Developed by [Carlos Díaz](https://www.linkedin.com/in/carlosvdiaz/)** ❤️  
+#React #DesignSystem #TailwindCSS #TypeScript #FrontendArchitecture
