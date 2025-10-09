@@ -1,5 +1,5 @@
 @import "tailwindcss";
-@import "../design-system/css/insigh-design.css";
+@import "../../../design/src/css/insigh-design.css";
 
 body {
   font-family: var(--insigh-typo_font-family--base);

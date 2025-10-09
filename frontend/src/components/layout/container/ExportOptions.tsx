@@ -1,52 +1,42 @@
 "use client";
 import { clickRangeAdapter } from "@/adapter/clickRange";
-import InsighButton from "@/design-system/ui/insigh-components/InsighButton/InsighButton";
-import InsighCard from "@/design-system/ui/insigh-components/InsighCard/InsighCard";
-import { useApi } from "@/hooks/useApi";
-import { exportData } from "@/lib/utils";
+import { exportFileCSV, exportFileJSON } from "@/adapter/exportFile";
+import { InsighButton, InsighCard } from "@insigh-design/insigh-components";
 import { useState } from "react";
 
 export const ExportOptions = () => {
-  const { data, error, loading, request } = useApi<any>();
-  const [exporting, setExporting] = useState(false);
+  const [isExportingJSON, setIsExportingJSON] = useState(false);
+  const [isExportingCSV, setIsExportingCSV] = useState(false);
 
-  const handleExportJSON = () => {
-    clickRangeAdapter({
-      component: "ExportOptions",
-      variant: "primary",
-      action: "export-json",
-    });
-
-    request("/components/export?format=json", {
-      method: "GET",
-      headers: {
-        Accept: "application/json",
-        "Content-Type": "application/json",
-      },
-    });
-
-    if (data) {
-      exportData(data, "data.json", "application/json");
+  const handleExportJSON = async () => {
+    try {
+      setIsExportingJSON(true);
+      await exportFileJSON();
+      clickRangeAdapter({
+        component: "ExportOptions",
+        variant: "primary",
+        action: "export-json",
+      });
+    } catch (error) {
+      console.error("Error exporting JSON:", error);
+    } finally {
+      setIsExportingJSON(false);
     }
   };
 
-  const handleExportCSV = () => {
-    clickRangeAdapter({
-      component: "ExportOptions",
-      variant: "primary",
-      action: "export-csv",
-    });
-
-    request("/components/export?format=csv", {
-      method: "GET",
-      headers: {
-        Accept: "text/csv",
-        "Content-Type": "text/csv",
-      },
-    });
-
-    if (data) {
-      exportData(data, "data.csv", "text/csv");
+  const handleExportCSV = async () => {
+    try {
+      setIsExportingCSV(true);
+      clickRangeAdapter({
+        component: "ExportOptions",
+        variant: "primary",
+        action: "export-csv",
+      });
+      await exportFileCSV();
+    } catch (error) {
+      console.error("Error exporting CSV:", error);
+    } finally {
+      setIsExportingCSV(false);
     }
   };
 
@@ -54,7 +44,6 @@ export const ExportOptions = () => {
     <div className="flex flex-col md:flex-row gap-6 p-10">
       <InsighCard>
         <InsighCard.Header title="Export Options" />
-        <InsighCard.Image src="/card-input.jpg" alt="Export Illustration" />
         <InsighCard.Body>
           <div className="mb-4">
             <p className="text-gray-600">
@@ -62,12 +51,13 @@ export const ExportOptions = () => {
             </p>
             <div className="h-4" />
             <InsighButton
+              disabled={isExportingJSON}
               onClick={handleExportJSON}
               icon="download"
               variant="primary"
               size="stretched"
             >
-              Export Data JSON
+              {isExportingJSON ? "Exporting..." : "Export Data JSON"}
             </InsighButton>
           </div>
         </InsighCard.Body>
@@ -75,7 +65,6 @@ export const ExportOptions = () => {
 
       <InsighCard>
         <InsighCard.Header title="Export Options" />
-        <InsighCard.Image src="/card-input.jpg" alt="Export Illustration" />
         <InsighCard.Body>
           <div className="mb-4">
             <p className="text-gray-600">
@@ -83,12 +72,13 @@ export const ExportOptions = () => {
             </p>
             <div className="h-4" />
             <InsighButton
-              onClickCapture={handleExportCSV}
+              disabled={isExportingCSV}
+              onClick={handleExportCSV}
               icon="download"
               variant="primary"
               size="stretched"
             >
-              Export Data CSV
+              {isExportingCSV ? "Exporting..." : "Export Data CSV"}
             </InsighButton>
           </div>
         </InsighCard.Body>
@@ -96,5 +86,4 @@ export const ExportOptions = () => {
     </div>
   );
 };
-
 export default ExportOptions;

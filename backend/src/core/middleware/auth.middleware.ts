@@ -13,6 +13,7 @@ export const jwtMiddleware = (
   next: NextFunction
 ) => {
   const token = req.cookies?.jwt;
+  console.log("JWT Middleware - Token:", req); // Debugging line
   if (!token) return next(new AppError("Not authenticated", 401));
 
   try {

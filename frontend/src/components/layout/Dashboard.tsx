@@ -1,7 +1,3 @@
-import { Suspense } from "react";
-import Chart from "./Chart";
-import ChartContainer from "./ChartContainer";
-
 interface DashboardProps {
   children?: React.ReactNode;
 }

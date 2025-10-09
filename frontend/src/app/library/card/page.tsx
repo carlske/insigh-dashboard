@@ -1,91 +1,57 @@
-import InsighButton from "@/design-system/ui/insigh-components/InsighButton/InsighButton";
-import InsighCard from "@/design-system/ui/insigh-components/InsighCard/InsighCard";
+import { InsighButton, InsighCard } from "@insigh-design/insigh-components";
 
 export default function ButtonHome() {
   return (
     <div>
       <main className="flex flex-col md:flex-row gap-8 p-8 flex-wrap sm:p-20 w-full">
-        <InsighCard>
-          <InsighCard.Body>
-            <div className="mb-4">
-              <p className="font-medium">
-                This is an example of card component used to display only
-                content.
-              </p>
-              <div className="mt-2">
-                <InsighButton variant="secondary" size="medium">
-                  medium
-                </InsighButton>
+        <InsighCard className="w-1/4">
+          <InsighCard.Content>
+            <InsighCard.Image>
+              <img src="../card-button.jpg" alt="Sample Image" />
+            </InsighCard.Image>
+            <InsighCard.Header title="Card without Header" />
+            <InsighCard.Body>
+              <div className="p-2">
+                <p className="font-medium">
+                  This is an example of card component used to display only
+                  content.
+                </p>
+                <div className="mt-2">
+                  <InsighButton variant="secondary" size="medium">
+                    medium
+                  </InsighButton>
+                </div>
               </div>
-            </div>
-          </InsighCard.Body>
+            </InsighCard.Body>
+          </InsighCard.Content>
         </InsighCard>
 
-        <InsighCard border borderstyle="dashed">
-          <InsighCard.Body>
-            <div className="mb-4">
-              <p className="font-medium">
-                This is an example of card component used to display only
+        <InsighCard borderStyle="dashed" className="w-1/4">
+          <InsighCard.Content>
+            <InsighCard.Image>
+              <img src="../card-button.jpg" alt="Sample Image" />
+            </InsighCard.Image>
+            <InsighCard.Header title="Card with Header" />
+            <InsighCard.Body>
+              <div className="flex justify-between items-center flex-col p-2 ">
+                <p className="font-medium">
+                  This is an example of card component used to display only
+                  content.
+                </p>
+                <div className="p-2">
+                  <InsighButton variant="secondary" size="medium">
+                    medium
+                  </InsighButton>
+                </div>
+              </div>
+            </InsighCard.Body>
+            <InsighCard.Footer>
+              <p className="text-sm text-gray-500">
+                This is an example of card component used to display footer
                 content.
               </p>
-              <div className="mt-2">
-                <InsighButton variant="secondary" size="medium">
-                  medium
-                </InsighButton>
-              </div>
-            </div>
-          </InsighCard.Body>
-        </InsighCard>
-
-        <InsighCard border borderstyle="dotted">
-          <InsighCard.Body>
-            <div className="mb-4">
-              <p className="font-medium">
-                This is an example of card component used to display only
-                content.
-              </p>
-              <div className="mt-2">
-                <InsighButton variant="secondary" size="medium">
-                  medium
-                </InsighButton>
-              </div>
-            </div>
-          </InsighCard.Body>
-        </InsighCard>
-
-        <InsighCard border borderstyle="solid">
-          <InsighCard.Body>
-            <div className="mb-4">
-              <p className="font-medium">
-                This is an example of card component used to display only
-                content.
-              </p>
-              <div className="mt-2">
-                <InsighButton variant="secondary" size="medium">
-                  medium
-                </InsighButton>
-              </div>
-            </div>
-          </InsighCard.Body>
-        </InsighCard>
-
-        <InsighCard>
-          <InsighCard.Image src="/card-page.png" alt="Card Page" />
-          <InsighCard.Header title="Buttons Primary" />
-          <InsighCard.Body>
-            <div className="mb-4">
-              <p className="font-medium">
-                This is an example of card component used to display content in
-                a concise and organized manner.
-              </p>
-              <div className="mt-2">
-                <InsighButton variant="secondary" size="medium">
-                  medium
-                </InsighButton>
-              </div>
-            </div>
-          </InsighCard.Body>
-          <InsighCard.Footer text="#card-primary #buttons #primary #carlosv" />
+            </InsighCard.Footer>
+          </InsighCard.Content>
         </InsighCard>
       </main>
     </div>

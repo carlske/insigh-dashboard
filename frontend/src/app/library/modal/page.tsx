@@ -1,10 +1,10 @@
 "use client";
-import InsighButton from "@/design-system/ui/insigh-components/InsighButton/InsighButton";
+import { InsighButton } from "@insigh-design/insigh-components";
 import InsighModal, {
   InsighModalActions,
   InsighModalDescription,
   InsighModalTitle,
-} from "@/design-system/ui/insigh-components/InsighModal/InsighModal";
+} from "@insigh-design/insigh-components/InsighModal/InsighModal";
 import { useState } from "react";
 
 export default function ModalPage() {
